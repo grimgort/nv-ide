@@ -79,10 +79,12 @@ hi TelescopeSelection guifg=#ffffff guibg=#32302f
 
 -- telescope.load_extension('octo')
 telescope.load_extension('fzy_native')
-telescope.load_extension('repo')
+--[[ telescope.load_extension('repo') ]]
 telescope.load_extension('neoclip')
 telescope.load_extension('notify')
 telescope.load_extension('dap')
+telescope.load_extension('projects')
+-- telescope.load_extension('live-grep-args')
 
 -- Implement delta as previewer for diffs
 

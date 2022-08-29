@@ -1,5 +1,6 @@
 -- Global
 -- vim.opt.fillchars = { vert = ' ' }
+vim.g.mapleader=" "
 vim.opt.showtabline = 2
 vim.opt.scrolloff = 5
 vim.opt.mouse = 'a'
@@ -29,9 +30,9 @@ vim.opt.listchars = { tab = ">>>", trail = "·", precedes = "←", extends = "�
 vim.opt.laststatus = 3
 vim.opt.timeoutlen = 500
 -- Buffer
-vim.opt.fileformat = 'unix'
+-- vim.opt.fileformat = 'unix'
 vim.opt.tabstop = 2
-vim.opt.spelllang = 'it'
+-- vim.opt.spelllang = 'it'
 vim.opt.softtabstop = 2
 vim.opt.swapfile = false
 vim.opt.undofile = false
@@ -45,7 +46,7 @@ vim.opt.foldlevel = 1
 vim.opt.list = false
 vim.opt.foldnestmax = 10
 vim.opt.signcolumn = 'yes'
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 vim.opt.foldenable = false
 vim.opt.cursorline = true
 

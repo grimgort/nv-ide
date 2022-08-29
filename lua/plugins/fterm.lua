@@ -7,6 +7,7 @@ require'FTerm'.setup({
   -- },
   -- border = 'single' -- or 'double'
   border = { "┏", "━", "┓", "┃", "┛","━", "┗", "┃" },
+cmd = 'pwsh',
 })
 vim.cmd([[
 hi FloatBorder guifg=#f2594b guibg=#282828

@@ -183,7 +183,7 @@ local buttons = {
     dashboard.button("g", "  Find modified file", ":lua require('plugins.telescope').my_git_status()<CR>"),
     dashboard.button("m", "  Show mark", ":Telescope marks"),
     dashboard.button("t", "  Show todo", ":TodoTelescope<CR>"),
-    dashboard.button("s", "  NV-IDE plugins", ":e ~/.config/nvim/lua/plugins.lua<CR>"),
+    dashboard.button("s", "  NV-IDE plugins", ":e ~/AppData/Local/nvim/lua/plugins.lua<CR>"),
     dashboard.button("u", "  Sync plugins", ":PackerSync<CR>"),
     dashboard.button("h", "  Neovim Check health", ":checkhealth<CR>"),
     dashboard.button("q", "  Quit", "<Cmd>qa<CR>")

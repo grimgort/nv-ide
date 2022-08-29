@@ -11,6 +11,11 @@ require('formatter').setup({
         }
       end
     },
+    lua = {
+      -- "formatter.filetypes.lua" defines default configurations for the
+      -- "lua" filetype
+      require("formatter.filetypes.lua").stylua,
+    }
     -- other formatters ...
   }
 })
