@@ -57,11 +57,11 @@ return require("packer").startup(function(use)
 	use({ "lukas-reineke/indent-blankline.nvim", config = lua_path("indent-blankline") })
 	use({ "JoosepAlviste/nvim-ts-context-commentstring" })
 	use({ "lewis6991/nvim-treesitter-context" })
-	-- use({ "SmiteshP/nvim-gps", config = lua_path("nvim-gps") }) 
-  use {
-    "SmiteshP/nvim-navic",
-    requires = "neovim/nvim-lspconfig"
-    }
+	-- use({ "SmiteshP/nvim-gps", config = lua_path("nvim-gps") })
+	use({
+		"SmiteshP/nvim-navic",
+		requires = "neovim/nvim-lspconfig",
+	})
 
 	-- Syntax
 	use({ "chrisbra/csv.vim" })
@@ -113,7 +113,7 @@ return require("packer").startup(function(use)
 	use({ "fedepujol/move.nvim" })
 
 	-- Tim Pope docet
-	use({ "tpope/vim-rails" })
+	--[[ use({ "tpope/vim-rails" }) ]]
 	use({ "tpope/vim-abolish" })
 	use({ "tpope/vim-sleuth" })
 	use({ "tpope/vim-bundler" })
@@ -152,7 +152,7 @@ return require("packer").startup(function(use)
 	use({ "goolord/alpha-nvim", config = lua_path("alpha-nvim") })
 	--[[ use({ "jeffkreeftmeijer/vim-numbertoggle" }) ]]
 	use({ "lambdalisue/suda.vim" })
-	use({ "numtostr/FTerm.nvim", config = lua_path("fterm") })
+	--[[ use({ "numtostr/FTerm.nvim", config = lua_path("fterm") }) ]]
 	use({ "wfxr/minimap.vim", config = lua_path("minimap") })
 	use({ "luukvbaal/stabilize.nvim", config = lua_path("stabilize") })
 	--[[ use({ "beauwilliams/focus.nvim", config = lua_path("focus") }) ]]
@@ -555,13 +555,30 @@ return require("packer").startup(function(use)
 		"akinsho/git-conflict.nvim",
 		tag = "*",
 		config = function()
-			require("git-conflict").setup()
+			require("git-conflict").setup({
+				default_mappings = true, -- disable buffer local mapping created by this plugin
+				disable_diagnostics = false, -- This will disable the diagnostics in a buffer whilst it is conflicted
+				highlights = { -- They must have background color, otherwise the default color will be used
+					incoming = "DiffText",
+					current = "DiffAdd",
+				},
+			})
 		end,
 	})
-use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
-use {'jose-elias-alvarez/null-ls.nvim', config = lua_path("null_ls") }
-use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons', config = lua_path("bufferline") }
---[[ use {'HustLion/q-quit'} ]]
---[[ use {'akinsho/bufferline.nvim', tag = "v2.*" } ]]
-
+	use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
+	use({ "jose-elias-alvarez/null-ls.nvim", config = lua_path("null_ls") })
+	use({
+		"akinsho/bufferline.nvim",
+		tag = "v2.*",
+		requires = "kyazdani42/nvim-web-devicons",
+		config = lua_path("bufferline"),
+	})
+	--[[ use {'HustLion/q-quit'} ]]
+	--[[ use {'akinsho/bufferline.nvim', tag = "v2.*" } ]]
+	--[[ use {'yamatsum/nvim-cursorline',  config = lua_path("nvim-cursorline") } -- bug other plugin ]]
+	use({
+		"akinsho/toggleterm.nvim",
+		tag = "*",
+		config = lua_path("toggleterm"),
+	})
 end)

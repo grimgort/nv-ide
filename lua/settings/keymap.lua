@@ -4,8 +4,16 @@
 -- vim.g.mapleader = "<space>"
 -- vim.keymap.set("n", "<F4>", ":set number! relativenumber!<CR>", { noremap = true, silent = false })
 -- vim.keymap.set("n", "<F5>", ":set list! list?<CR>", { noremap = false, silent = false })
-vim.keymap.set("n", "ç", '<CMD>lua require("FTerm").toggle()<CR>', { noremap = true, silent = true })
-vim.keymap.set("t", "ç", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', { noremap = true, silent = true })
+--[[ vim.keymap.set("n", "ç", '<CMD>lua require("FTerm").toggle()<CR>', { noremap = true, silent = true }) ]]
+--[[ vim.keymap.set("t", "ç", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', { noremap = true, silent = true }) ]]
+
+--[[ vim.keymap.set("n", "ç", '<CMD>ToggleTerm<CR>', { noremap = true, silent = true }) ]]
+--[[ vim.keymap.set("t", "ç", '<C-\\><C-n><CMD>ToggleTerm<CR>', { noremap = true, silent = true }) ]]
+vim.cmd([[
+nnoremap <silent>ç <Cmd>exe v:count1 . "ToggleTerm"<CR>
+tnoremap <silent>ç <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>
+]])
+
 vim.keymap.set("n", "<leader>ee", ":NvimTreeToggle<CR>", { noremap = false, silent = true })
 vim.keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>", { noremap = false, silent = true })
 vim.keymap.set("n", "s", ":w<CR>", { noremap = false, silent = true })
@@ -42,7 +50,7 @@ vim.keymap.set("n", "gf", ":lua vim.lsp.buf.formatting()<CR>", { noremap = true,
 vim.keymap.set("n", "gh", ":lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
 -- vim.keymap.set("n", "<space>m", ":lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "gr", ":lua vim.lsp.buf.references()<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "gs", ":lua vim.lsp.buf.document_symbol()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "gs", "<cmd>Telescope symbols<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "gk", ":lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
 -- -- Telescope
 -- vim.keymap.set("n", "<leader>r", ":lua require('telescope.builtin').live_grep()<CR>", { noremap = true, silent = true })
@@ -323,8 +331,8 @@ local mappings = {
 	l = {
 		name = "LSP",
 		-- a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-		a = { vim.lsp.buf.code_action, "CodeLens Action" },
-		h = { vim.lsp.buf.hover(), "symbole help" },
+		a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "CodeLens Action" },
+		h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "symbole help" },
 		d = { "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>", "Buffer Diagnostics" },
 		w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
@@ -365,6 +373,7 @@ local mappings = {
 		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
 		R = { "<cmd>Telescope registers<cr>", "Registers" },
 		t = { "<cmd>Telescope live_grep<cr>", "Text" },
+		s = { "<cmd>Telescope grep_string<cr>", "Current word" },
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 		C = { "<cmd>Telescope commands<cr>", "Commands" },
 		p = {
@@ -375,6 +384,12 @@ local mappings = {
 	T = {
 		name = "Treesitter",
 		i = { ":TSConfigInfo<cr>", "Info" },
+	},
+	S = {
+		name = "Session",
+		c = { "<cmd>lua require('persistence').load()<cr>", "Restore last session for current dir" },
+		l = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Restore last session" },
+		Q = { "<cmd>lua require('persistence').stop()<cr>", "Quit without saving session" },
 	},
 }
 
@@ -430,46 +445,51 @@ vim.keymap.set("i", "<A-Down>", "<C-\\><C-N><C-w>j", opt)
 vim.keymap.set("i", "<A-Left>", "<C-\\><C-N><C-w>h", opt)
 vim.keymap.set("i", "<A-Right>", "<C-\\><C-N><C-w>l", opt)
 
-    vim.keymap.set("n","<C-h>","<C-w>h",opt)
-    vim.keymap.set("n","<C-j>","<C-w>j",opt)
-    vim.keymap.set("n","<C-k>","<C-w>k",opt)
-    vim.keymap.set("n","<C-l>","<C-w>l",opt)
+vim.keymap.set("n", "<C-h>", "<C-w>h", opt)
+vim.keymap.set("n", "<C-j>", "<C-w>j", opt)
+vim.keymap.set("n", "<C-k>", "<C-w>k", opt)
+vim.keymap.set("n", "<C-l>", "<C-w>l", opt)
 
-    -- Resize with arrows
-    vim.keymap.set("n","<C-Up>",":resize -2<CR>",opt)
-    vim.keymap.set("n","<C-Down>",":resize +2<CR>",opt)
-    vim.keymap.set("n","<C-Left>",":vertical resize -2<CR>",opt)
-    vim.keymap.set("n","<C-Right>",":vertical resize +2<CR>",opt)
+-- Resize with arrows
+vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", opt)
+vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", opt)
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", opt)
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opt)
 
-    -- Move current line / block with Alt-j/k a la vscode.
-    vim.keymap.set("n","<A-j>",":m .+1<CR>==",opt)
-    vim.keymap.set("n","<A-k>",":m .-2<CR>==",opt)
+-- Move current line / block with Alt-j/k a la vscode.
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", opt)
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", opt)
 
-    -- QuickFix
-    vim.keymap.set("n","]q",":cnext<CR>",opt)
-    vim.keymap.set("n","[q",":cprev<CR>",opt)
-    vim.keymap.set("n","<C-q>",":call QuickFixToggle()<CR>",opt)
+-- QuickFix
+vim.keymap.set("n", "]q", ":cnext<CR>", opt)
+vim.keymap.set("n", "[q", ":cprev<CR>", opt)
+vim.keymap.set("n", "<C-q>", ":call QuickFixToggle()<CR>", opt)
 
-    vim.keymap.set("t","<C-h>","<C-\\><C-N><C-w>h",opt)
-    vim.keymap.set("t","<C-j>","<C-\\><C-N><C-w>j",opt)
-    vim.keymap.set("t","<C -k>","<C-\\><C-N><C-w>k",opt)
-    vim.keymap.set("t","<C-l>","<C-\\><C-N><C-w>l",opt)
+vim.keymap.set("t", "<C-h>", "<C-\\><C-N><C-w>h", opt)
+vim.keymap.set("t", "<C-j>", "<C-\\><C-N><C-w>j", opt)
+vim.keymap.set("t", "<C -k>", "<C-\\><C-N><C-w>k", opt)
+vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l", opt)
 
-    -- Better indenting
-    vim.keymap.set("v","<","<gv",opt)
-    vim.keymap.set("v",">",">gv",opt)
+-- Better indenting
+vim.keymap.set("v", "<", "<gv", opt)
+vim.keymap.set("v", ">", ">gv", opt)
 
-    -- Move selected line / block of text in visual mode
-    -- vim.keymap.set("gv","K",":move '<-2<CR>gv-gv",opt)
-    -- vim.keymap.set("gv","J",":move '>+1<CR>gv-gv",opt)
+-- Move selected line / block of text in visual mode
+-- vim.keymap.set("gv","K",":move '<-2<CR>gv-gv",opt)
+-- vim.keymap.set("gv","J",":move '>+1<CR>gv-gv",opt)
 
-    -- Move current line / block with Alt-j/k ala vscode.
-    -- vim.keymap.set("gv","<A-j>",":m '>+1<CR>gv-gv",opt)
-    -- vim.keymap.set("gv","<A-k>",":m '<-2<CR>gv-gv",opt)
+-- Move current line / block with Alt-j/k ala vscode.
+-- vim.keymap.set("gv","<A-j>",":m '>+1<CR>gv-gv",opt)
+-- vim.keymap.set("gv","<A-k>",":m '<-2<CR>gv-gv",opt)
 
-    -- navigate tab completion with <c-j> and <c-k>
-    -- runs conditionally
-    -- ["<C-j>"] = { 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true } },
-    -- ["<C-k>"] = { 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true } },
+-- navigate tab completion with <c-j> and <c-k>
+-- runs conditionally
+-- ["<C-j>"] = { 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { expr = true, noremap = true } },
+-- ["<C-k>"] = { 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { expr = true, noremap = true } },
 
 --[[ vim.set.keymap("n","q","<cmd>lua require('utils.settings.functions').smart_quit()<CR>", opt) ]]
+
+vim.keymap.set("n", "<leader>lz", "<Cmd>ClangdSwitchSourceHeader<CR>", opt)
+
+vim.keymap.set("c","<S-k>","<UP>",opt)
+vim.keymap.set("c","<S-j>","<DOWN>",opt)

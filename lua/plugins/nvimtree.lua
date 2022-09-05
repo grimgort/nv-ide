@@ -141,7 +141,8 @@
         debounce_delay = 50,
       },
       git = {
-        enable = true,
+        --[[ enable = true, ]]
+        enable = false,
         ignore = false,
         show_on_dirs = true,
         timeout = 400,
