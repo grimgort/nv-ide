@@ -76,7 +76,7 @@ vim.keymap.set("n", "gk", ":lua vim.lsp.buf.hover()<CR>", { noremap = true, sile
 vim.keymap.set(
 	"n",
 	"<leader>f",
-	":lua require('plugins.telescope').project_files()<CR>",
+	"<cmd>Telescope find_files hidden=true no_ignore=true<cr>",
 	{ noremap = true, silent = true }
 )
 vim.keymap.set("n", "<leader>p", "<cmd>Telescope projects<CR>", { noremap = true, silent = true })
@@ -98,8 +98,8 @@ vim.keymap.set("n", "<leader>p", "<cmd>Telescope projects<CR>", { noremap = true
 -- 	":lua require('plugins.telescope').my_git_bcommits()<CR>",
 -- 	{ noremap = true, silent = true }
 -- )
--- vim.keymap.set("n", "<leader>ns", ":lua require('plugins.telescope').my_note()<CR>", { noremap = true, silent = true })
--- vim.keymap.set("n", "<leader>nn", ":lua NewNote()<CR>", { noremap = true, silent = false })
+ vim.keymap.set("n", "<leader>ns", ":lua require('plugins.telescope').my_note()<CR>", { noremap = true, silent = true })
+ vim.keymap.set("n", "<leader>nn", ":lua NewNote()<CR>", { noremap = true, silent = false })
 -- vim.keymap.set(
 -- 	"n",
 -- 	"<leader>n",
@@ -493,3 +493,4 @@ vim.keymap.set("n", "<leader>lz", "<Cmd>ClangdSwitchSourceHeader<CR>", opt)
 
 vim.keymap.set("c","<S-k>","<UP>",opt)
 vim.keymap.set("c","<S-j>","<DOWN>",opt)
+vim.keymap.set("n","<leader>q","<cmd>lua smart_quit()<cr>",opt)

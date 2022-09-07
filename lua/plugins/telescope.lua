@@ -2,6 +2,11 @@ local actions = require("telescope.actions")
 local trouble = require("trouble.providers.telescope")
 local telescope = require("telescope")
 telescope.setup({
+  pickers = {
+    buffers = {
+      sort_lastused = true
+    },
+  },
 	defaults = {
 		vimgrep_arguments = {
 			"rg",
@@ -95,7 +100,7 @@ hi TelescopeSelection guifg=#ffffff guibg=#32302f
 -- telescope.load_extension('octo')
 telescope.load_extension("fzy_native")
 --[[ telescope.load_extension('repo') ]]
-telescope.load_extension("neoclip")
+--[[ telescope.load_extension("neoclip") ]]
 telescope.load_extension("notify")
 telescope.load_extension("dap")
 telescope.load_extension("projects")

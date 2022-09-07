@@ -15,8 +15,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "plugins.lua",
 	command = "source <afile> | PackerCompile",
 })
-
-require("packer").init({ display = { auto_clean = false } })
+require("packer").init({snapshot_path= vim.fn.stdpath("config") .. "/snapshots" , display = { auto_clean = false } })
 
 return require("packer").startup(function(use)
 	-- Load lua path
