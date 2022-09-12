@@ -47,42 +47,85 @@ dap.configurations.ruby = {
   },
 }
 
+--[[ local dap = require('dap') ]]
+--[[ dap.adapters.lldb = { ]]
+--[[   type = 'executable', ]]
+--[[   command = 'lldb-vscode', -- adjust as needed, must be absolute path ]]
+--[[   name = 'lldb' ]]
+--[[ } ]]
+--[[]]
+--[[ local dap = require('dap') ]]
+--[[ dap.configurations.cpp = { ]]
+--[[   { ]]
+--[[     name = 'Launch', ]]
+--[[     type = 'lldb', ]]
+--[[     request = 'launch', ]]
+--[[     program = function() ]]
+--[[       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file') ]]
+--[[     end, ]]
+--[[     cwd = '${workspaceFolder}', ]]
+--[[     stopOnEntry = false, ]]
+--[[     args = {}, ]]
+--[[]]
+--[[     -- 💀 ]]
+--[[     -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting: ]]
+--[[     -- ]]
+--[[     --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope ]]
+--[[     -- ]]
+--[[     -- Otherwise you might get the following error: ]]
+--[[     -- ]]
+--[[     --    Error on launch: Failed to attach to the target process ]]
+--[[     -- ]]
+--[[     -- But you should be aware of the implications: ]]
+--[[     -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html ]]
+--[[     -- runInTerminal = false, ]]
+--[[   }, ]]
+--[[ } ]]
+
 local dap = require('dap')
-dap.adapters.lldb = {
+dap.adapters.cppdbg = {
+  id = 'cppdbg',
   type = 'executable',
-  command = 'lldb-vscode', -- adjust as needed, must be absolute path
-  name = 'lldb'
+  --[[ command = 'C:\\absolute\\path\\to\\cpptools\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe', ]]
+  --[[ command = 'D:\\ftarroux\\AppData\\Local\\nvim-data\\mason\\bin\\OpenDebugAD7.cmd', ]]
+  command = 'D:\\ftarroux\\AppData\\Local\\nvim-data\\mason\\packages\\cpptools\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
+
+  options = {
+    detached = false
+  }
 }
 
 local dap = require('dap')
 dap.configurations.cpp = {
   {
-    name = 'Launch',
-    type = 'lldb',
+    --[[ name = "Launch file", ]]
+    --[[ type = "cppdbg", ]]
+    --[[ request = "launch", ]]
+    --[[ program = function() ]]
+    --[[   return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file') ]]
+    --[[ end, ]]
+    --[[ cwd = '${workspaceFolder}', ]]
+    --[[ stopAtEntry = true, ]]
+    name= "Windows Launch",
+			type= "cppdbg",
+			request= "launch",
+			program= "D:\\ftarroux\\Documents\\FRED\\BaseGit\\matisse_fred\\build\\bin\\Debug\\MATISSE.exe",
+			stopAtEntry= true,
+			cwd= "D:\\ftarroux\\Documents\\FRED\\BaseGit\\matisse_fred\\build\\BaseDeTest\\aero_5_1\\",
+      args = {"D:\\ftarroux\\Documents\\FRED\\BaseGit\\matisse_fred\\BaseDeTest\\nua_6_9\\T350-NR-NA-6-9_1.scm","D:\\ftarroux\\Documents\\FRED\\BaseGit\\matisse_fred\\build\\matisse.cfg"}
+  },
+  {
+    name = 'Attach to gdbserver :1234',
+    type = 'cppdbg',
     request = 'launch',
+    MIMode = 'gdb',
+    miDebuggerServerAddress = 'localhost:1234',
+    miDebuggerPath = '/usr/bin/gdb',
+    cwd = '${workspaceFolder}',
     program = function()
       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
     end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-    args = {},
-
-    -- 💀
-    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-    --
-    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-    --
-    -- Otherwise you might get the following error:
-    --
-    --    Error on launch: Failed to attach to the target process
-    --
-    -- But you should be aware of the implications:
-    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-    -- runInTerminal = false,
   },
 }
-
-
-
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp

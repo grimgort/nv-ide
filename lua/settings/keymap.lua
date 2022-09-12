@@ -50,7 +50,7 @@ vim.keymap.set("n", "gf", ":lua vim.lsp.buf.formatting()<CR>", { noremap = true,
 vim.keymap.set("n", "gh", ":lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
 -- vim.keymap.set("n", "<space>m", ":lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "gr", ":lua vim.lsp.buf.references()<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "gs", "<cmd>Telescope symbols<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "gs", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "gk", ":lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
 -- -- Telescope
 -- vim.keymap.set("n", "<leader>r", ":lua require('telescope.builtin').live_grep()<CR>", { noremap = true, silent = true })
