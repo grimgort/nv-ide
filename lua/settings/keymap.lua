@@ -76,7 +76,7 @@ vim.keymap.set("n", "gk", ":lua vim.lsp.buf.hover()<CR>", { noremap = true, sile
 vim.keymap.set(
 	"n",
 	"<leader>f",
-	"<cmd>Telescope find_files hidden=true no_ignore=true<cr>",
+	"<cmd>Telescope find_files<cr>",
 	{ noremap = true, silent = true }
 )
 vim.keymap.set("n", "<leader>p", "<cmd>Telescope projects<CR>", { noremap = true, silent = true })
@@ -214,7 +214,7 @@ vim.keymap.set("n", "<leader>zq", "<cmd>copen<CR>", opt)
 vim.keymap.set("v", "*", [[y/\V<C-r>=escape(@",'/\')<CR><CR>]], opt)
 vim.keymap.set("n", "<leader>zh", [[:%s/<c-r><c-w>/<c-r><c-w>/g]], opt)
 vim.keymap.set("n", "<leader>zc", ":Telescope grep_string<cr>", opt)
-vim.keymap.set("n", "<leader>sF", ":Telescope find_files hidden=true no_ignore=true<cr>", opt)
+vim.keymap.set("n", "<leader>sa", ":Telescope find_files hidden=true no_ignore=true<cr>", opt)
 vim.keymap.set("n", "<leader>zm", "<cmd>Glow<cr>", opt)
 vim.keymap.set("n", "<leader>zp", "<cmd>MarkdownPreview<cr>", opt)
 vim.keymap.set("n", "<leader>td", ":TranslateW<cr>", opt)
@@ -494,3 +494,13 @@ vim.keymap.set("n", "<leader>lz", "<Cmd>ClangdSwitchSourceHeader<CR>", opt)
 vim.keymap.set("c","<S-k>","<UP>",opt)
 vim.keymap.set("c","<S-j>","<DOWN>",opt)
 vim.keymap.set("n","<leader>q","<cmd>lua smart_quit()<cr>",opt)
+
+
+vim.keymap.set('n', '<leader>co', '<Plug>(git-conflict-ours)')
+vim.keymap.set('n', '<leader>ct', '<Plug>(git-conflict-theirs)')
+vim.keymap.set('n', '<leader>cb', '<Plug>(git-conflict-both)')
+vim.keymap.set('n', '<leader>c0', '<Plug>(git-conflict-none)')
+vim.keymap.set('n', '<leader>ck', '<Plug>(git-conflict-prev-conflict)')
+vim.keymap.set('n', '<leader>cj', '<Plug>(git-conflict-next-conflict)')
+vim.keymap.set('n', '<leader>vv', '<cmd>windo diffthis<cr>')
+vim.keymap.set('n', '<leader>vf', '<cmd>bufdo diffoff<cr>')

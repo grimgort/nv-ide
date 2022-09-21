@@ -21,6 +21,11 @@ nnoremap c d
 vnoremap c d
 noremap <Del> "_x
 ]])
+
+vim.cmd([[
+autocmd BufRead,BufNewFile Jenkinsfile set filetype=groovy
+]])
+
 vim.api.nvim_exec(
 	[[
 
@@ -65,7 +70,7 @@ endfunction
 function! Close_all()
   let nodelete = 0
   let list_file_to_delete= []
-  let list_file_to_keep = ['.vimrc','vimrcWindows' ]
+  let list_file_to_keep = ['.vimrc','vimrcWindows','Jenkinsfile','SDK_struct' ]
   if expand('%:e') !=# ''
     let nodelete = 1
   endif

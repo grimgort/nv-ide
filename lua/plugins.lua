@@ -82,7 +82,7 @@ return require("packer").startup(function(use)
 	use({ "nvim-lua/popup.nvim" })
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "nvim-telescope/telescope.nvim", config = lua_path("telescope") })
-	use({ "nvim-telescope/telescope-fzy-native.nvim" })
+	--[[ use({ "nvim-telescope/telescope-fzy-native.nvim" }) ]]
 	use({
 		"nvim-telescope/telescope-fzf-native.nvim",
 		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
@@ -261,7 +261,7 @@ return require("packer").startup(function(use)
 		"npxbr/glow.nvim",
 		disable = disableVariable,
 		ft = { "markdown" },
-		-- run = "yay -S glow"
+ config = lua_path("glow")
 	})
 	-- use({
 	-- 	"lukas-reineke/indent-blankline.nvim",
@@ -557,7 +557,7 @@ return require("packer").startup(function(use)
 		"vim-test/vim-test",
 	})
 	use({ "brymer-meneses/grammar-guard.nvim" })
-	--[[ use({ "p00f/clangd_extensions.nvim" }) ]]
+	use({ "p00f/clangd_extensions.nvim" })
 	use({
 		"akinsho/git-conflict.nvim",
 		tag = "*",
@@ -597,4 +597,8 @@ return require("packer").startup(function(use)
 			})
 		end,
 	})
+  use({'renerocksai/telekasten.nvim', config = lua_path("telekasten")})
+  use({'renerocksai/calendar-vim'})
+  use({'ekickx/clipboard-image.nvim', config = lua_path("clipboard-image")})
+use("LudoPinelli/comment-box.nvim")
 end)

@@ -7,5 +7,6 @@ if vim.fn.has('unix') == 1 then
   end
 end
 
-
-    vim.opt.guifont = 'JetBrains Mono:h14'
+    --[[ vim.opt.guifont = 'JetBrains Mono:h14' ]]
+--[[ vim.opt.guifont = { 'JetBrains Mono','-bang'	} ]]
+--[[ vim.opt.guifont = 'Cascadia Code:h14' ]]
