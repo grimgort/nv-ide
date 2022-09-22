@@ -98,8 +98,9 @@ vim.keymap.set("n", "<leader>p", "<cmd>Telescope projects<CR>", { noremap = true
 -- 	":lua require('plugins.telescope').my_git_bcommits()<CR>",
 -- 	{ noremap = true, silent = true }
 -- )
- vim.keymap.set("n", "<leader>ns", ":lua require('plugins.telescope').my_note()<CR>", { noremap = true, silent = true })
- vim.keymap.set("n", "<leader>nn", ":lua NewNote()<CR>", { noremap = true, silent = false })
+ --[[ vim.keymap.set("n", "<leader>ns", ":lua require('plugins.telescope').my_note()<CR>", { noremap = true, silent = true }) ]]
+ --[[ vim.keymap.set("n", "<leader>nn", ":lua NewNote()<CR>", { noremap = true, silent = false }) ]]
+ vim.keymap.set("n", "<leader>nn", "<cmd>Telekasten find_notes<CR>", { noremap = true, silent = false })
 -- vim.keymap.set(
 -- 	"n",
 -- 	"<leader>n",
