@@ -44,7 +44,8 @@ vim.keymap.set("n", "<C-F>t", ":CtrlSFToggle<CR>", { noremap = true, silent = fa
 -- -- LSP
 -- vim.keymap.set("n", "<space>,", ":lua vim.lsp.diagnostic.goto_prev()<CR>", { noremap = true, silent = true })
 -- vim.keymap.set("n", "<space>;", ":lua vim.lsp.diagnostic.goto_next()<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "ga", ":lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true })
+--[[ vim.keymap.set("n", "ga", ":lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true }) ]]
+vim.keymap.set("n", "ga", ":CodeActionMenu<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "gd", ":lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "gf", ":lua vim.lsp.buf.formatting()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "gh", ":lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
@@ -76,7 +77,7 @@ vim.keymap.set("n", "gk", ":lua vim.lsp.buf.hover()<CR>", { noremap = true, sile
 vim.keymap.set(
 	"n",
 	"<leader>f",
-	"<cmd>Telescope find_files<cr>",
+	"<cmd>Telescope git_files<cr>",
 	{ noremap = true, silent = true }
 )
 vim.keymap.set("n", "<leader>p", "<cmd>Telescope projects<CR>", { noremap = true, silent = true })
@@ -332,7 +333,8 @@ local mappings = {
 	l = {
 		name = "LSP",
 		-- a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-		a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "CodeLens Action" },
+		--[[ a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "CodeLens Action" }, ]]
+		a = { "<cmd>CodeActionMenu<CR>", "CodeLens Action" },
 		h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "symbole help" },
 		d = { "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>", "Buffer Diagnostics" },
 		w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
@@ -431,11 +433,11 @@ which_key.register(mappings, { prefix = "<leader>" })
 --
 --
 -- 'jk' for quitting insert mode
-vim.keymap.set("i", "jk", "<ESC>", opt)
+--[[ vim.keymap.set("i", "jk", "<ESC>", opt) ]]
 -- 'kj' for quitting insert mode
-vim.keymap.set("i", "kj", "<ESC>", opt)
+--[[ vim.keymap.set("i", "kj", "<ESC>", opt) ]]
 -- 'jj' for quitting insert mode
-vim.keymap.set("i", "jj", "<ESC>", opt)
+--[[ vim.keymap.set("i", "jj", "<ESC>", opt) ]]
 -- Move current line / block with Alt-j/k ala vscode.
 vim.keymap.set("i", "<A-j>", "<Esc>:m .+1<CR>==gi", opt)
 -- Move current line / block with Alt-j/k ala vscode.
@@ -505,3 +507,4 @@ vim.keymap.set('n', '<leader>ck', '<Plug>(git-conflict-prev-conflict)')
 vim.keymap.set('n', '<leader>cj', '<Plug>(git-conflict-next-conflict)')
 vim.keymap.set('n', '<leader>vv', '<cmd>windo diffthis<cr>')
 vim.keymap.set('n', '<leader>vf', '<cmd>bufdo diffoff<cr>')
+vim.keymap.set("n", "<leader>sz", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")

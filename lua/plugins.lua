@@ -36,9 +36,12 @@ return require("packer").startup(function(use)
 	-- Autocomplete
 	use({ "hrsh7th/nvim-cmp" })
 	use({ "hrsh7th/cmp-nvim-lsp" })
+	use({ "hrsh7th/cmp-nvim-lua" })
 	use({ "hrsh7th/cmp-buffer" })
 	use({ "hrsh7th/cmp-vsnip" })
-	-- use({ "hrsh7th/vim-vsnip" })
+	use({ "hrsh7th/vim-vsnip" })
+	use({ "L3MON4D3/LuaSnip" })
+	use({ "saadparwaiz1/cmp_luasnip" })
 	use({ "hrsh7th/cmp-path" })
 	use({ "hrsh7th/cmp-calc" })
 	use({ "hrsh7th/cmp-cmdline" })
@@ -90,7 +93,6 @@ return require("packer").startup(function(use)
 	--[[ use({ "cljoly/telescope-repo.nvim" }) ]]
 	use({ "nvim-telescope/telescope-dap.nvim" })
 	--[[ use({ "pwntester/octo.nvim", config = lua_path("octo") }) ]]
-
 	-- Explorer
 	use({ "kyazdani42/nvim-tree.lua", commit = "08ab346", config = lua_path("nvimtree") })
 
@@ -261,7 +263,7 @@ return require("packer").startup(function(use)
 		"npxbr/glow.nvim",
 		disable = disableVariable,
 		ft = { "markdown" },
- config = lua_path("glow")
+		config = lua_path("glow"),
 	})
 	-- use({
 	-- 	"lukas-reineke/indent-blankline.nvim",
@@ -597,8 +599,25 @@ return require("packer").startup(function(use)
 			})
 		end,
 	})
-  use({'renerocksai/telekasten.nvim', config = lua_path("telekasten")})
-  use({'renerocksai/calendar-vim'})
-  use({'ekickx/clipboard-image.nvim', config = lua_path("clipboard-image")})
-use("LudoPinelli/comment-box.nvim")
+	use({ "renerocksai/telekasten.nvim", config = lua_path("telekasten") })
+	use({ "renerocksai/calendar-vim" })
+	use({ "ekickx/clipboard-image.nvim", config = lua_path("clipboard-image") })
+	use("LudoPinelli/comment-box.nvim")
+	use({
+		"max397574/better-escape.nvim",
+		config = function()
+			require("better_escape").setup()
+		end,
+	})
+--[[ use({ ]]
+--[[     "glepnir/lspsaga.nvim", ]]
+--[[     branch = "main", ]]
+--[[     config = function() ]]
+--[[         local saga = require("lspsaga") ]]
+--[[         saga.init_lsp_saga({ ]]
+--[[             -- your configuration ]]
+--[[         }) ]]
+--[[     end, ]]
+--[[ }) ]]
+
 end)

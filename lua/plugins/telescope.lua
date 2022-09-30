@@ -4,10 +4,11 @@ local telescope = require("telescope")
 telescope.setup({
   pickers = {
     buffers = {
-      sort_lastused = true
+      --[[ sort_lastused = true ]]
     },
   },
 	defaults = {
+    wrap_results=true,
 		vimgrep_arguments = {
 			"rg",
 			"--color=never",
@@ -44,7 +45,7 @@ telescope.setup({
 			preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 			results = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 		},
-		path_display = { "truncate" },
+		--[[ path_display = { "truncate" }, ]]
 		set_env = { ["COLORTERM"] = "truecolor" },
 		mappings = {
 			i = {
@@ -63,6 +64,8 @@ telescope.setup({
 				["<c-t>"] = trouble.open_with_trouble,
 				["<S-k>"] = actions.preview_scrolling_up,
 				["<S-j>"] = actions.preview_scrolling_down,
+				["<A-j>"] = actions.cycle_history_next,
+				["<A-k>"] = actions.cycle_history_prev,
 			},
 		},
 	},
