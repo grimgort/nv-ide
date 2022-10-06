@@ -102,6 +102,7 @@ vim.keymap.set("n", "<leader>p", "<cmd>Telescope projects<CR>", { noremap = true
  --[[ vim.keymap.set("n", "<leader>ns", ":lua require('plugins.telescope').my_note()<CR>", { noremap = true, silent = true }) ]]
  --[[ vim.keymap.set("n", "<leader>nn", ":lua NewNote()<CR>", { noremap = true, silent = false }) ]]
  vim.keymap.set("n", "<leader>nn", "<cmd>Telekasten find_notes<CR>", { noremap = true, silent = false })
+ vim.keymap.set("n", "<leader>nb", "<cmd>Telekasten new_note<CR>", { noremap = true, silent = false })
 -- vim.keymap.set(
 -- 	"n",
 -- 	"<leader>n",
@@ -508,3 +509,4 @@ vim.keymap.set('n', '<leader>cj', '<Plug>(git-conflict-next-conflict)')
 vim.keymap.set('n', '<leader>vv', '<cmd>windo diffthis<cr>')
 vim.keymap.set('n', '<leader>vf', '<cmd>bufdo diffoff<cr>')
 vim.keymap.set("n", "<leader>sz", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+vim.keymap.set("n", "<F4>", "<cmd>MundoToggle<cr>")

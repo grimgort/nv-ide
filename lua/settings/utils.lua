@@ -112,6 +112,7 @@ function! CloseWindo()
   silent! :FloatermHide!<cr>
   silent! :nohlsearch<cr>
   silent! :DiffviewClose<cr>
+  silent! :ToggleTermToggleAll!<cr>
   "silent! :CocCommand explorer --quit 
   
   "cache le terminal
