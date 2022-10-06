@@ -622,5 +622,8 @@ return require("packer").startup(function(use)
   --[[         }) ]]
   --[[     end, ]]
   --[[ }) ]]
-  use({ "crusj/bookmarks.nvim" })
+  use({ "crusj/bookmarks.nvim",
+    branch = 'main',
+    requires = { 'kyazdani42/nvim-web-devicons' }, config = lua_path("bookmarks")
+  })
 end)
