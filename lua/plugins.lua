@@ -626,4 +626,5 @@ return require("packer").startup(function(use)
     branch = 'main',
     requires = { 'kyazdani42/nvim-web-devicons' }, config = lua_path("bookmarks")
   })
+  use{"f-person/git-blame.nvim"}
 end)
