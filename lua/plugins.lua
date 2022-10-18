@@ -168,7 +168,9 @@ return require("packer").startup(function(use)
   --[[ use({ "wfxr/minimap.vim", config = lua_path("minimap") }) ]]
   --[[ use({ "luukvbaal/stabilize.nvim", config = lua_path("stabilize") }) ]]
   --[[ use({ "beauwilliams/focus.nvim", config = lua_path("focus") }) ]]
-  use({ "kevinhwang91/nvim-bqf" })
+  use({ "kevinhwang91/nvim-bqf",
+    tag = "*"
+  })
 
   use({
     "windwp/nvim-spectre",
@@ -217,25 +219,25 @@ return require("packer").startup(function(use)
     disable = disableVariable,
     event = "BufRead",
   })
-  use({
-    "rmagatti/goto-preview",
-    disable = disableVariable,
-    config = function()
-      require("goto-preview").setup({
-        width = 120, -- Width of the floating window
-        height = 25, -- Height of the floating window
-        default_mappings = true, -- Bind default mappings
-        debug = false, -- Print debug information
-        opacity = nil, -- 0-100 opacity level of the floating window where 100 is fully transparent.
-        post_open_hook = nil, -- A function taking two arguments, a buffer and a window to be ran as a hook.
-        -- You can use "default_mappings = true" setup option
-        -- Or explicitly set keybindings
-        -- vim.cmd("nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>")
-        -- vim.cmd("nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>")
-        -- vim.cmd("nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>")
-      })
-    end,
-  })
+  --[[ use({ ]] -- replaced by lsp saga
+  --[[   "rmagatti/goto-preview", ]]
+  --[[   disable = disableVariable, ]]
+  --[[   config = function() ]]
+  --[[     require("goto-preview").setup({ ]]
+  --[[       width = 120, -- Width of the floating window ]]
+  --[[       height = 25, -- Height of the floating window ]]
+  --[[       default_mappings = true, -- Bind default mappings ]]
+  --[[       debug = false, -- Print debug information ]]
+  --[[       opacity = nil, -- 0-100 opacity level of the floating window where 100 is fully transparent. ]]
+  --[[       post_open_hook = nil, -- A function taking two arguments, a buffer and a window to be ran as a hook. ]]
+  --[[       -- You can use "default_mappings = true" setup option ]]
+  --[[       -- Or explicitly set keybindings ]]
+  --[[       -- vim.cmd("nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>") ]]
+  --[[       -- vim.cmd("nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>") ]]
+  --[[       -- vim.cmd("nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>") ]]
+  --[[     }) ]]
+  --[[   end, ]]
+  --[[ }) ]]
   use({
     "folke/persistence.nvim",
     event = "BufReadPre", -- this will only start session saving when an actual file was opened
@@ -612,19 +614,19 @@ return require("packer").startup(function(use)
     end,
   })
   use('tibabit/vim-templates')
-  --[[ use({ ]]
-  --[[     "glepnir/lspsaga.nvim", ]]
-  --[[     branch = "main", ]]
-  --[[     config = function() ]]
-  --[[         local saga = require("lspsaga") ]]
-  --[[         saga.init_lsp_saga({ ]]
-  --[[             -- your configuration ]]
-  --[[         }) ]]
-  --[[     end, ]]
-  --[[ }) ]]
+  use({
+      "glepnir/lspsaga.nvim",
+      branch = "main",
+      config = function()
+          local saga = require("lspsaga")
+          saga.init_lsp_saga({
+              -- your configuration
+          })
+      end,
+  })
   use({ "crusj/bookmarks.nvim",
     branch = 'main',
     requires = { 'kyazdani42/nvim-web-devicons' }, config = lua_path("bookmarks")
   })
-  use{"f-person/git-blame.nvim"}
+  use { "f-person/git-blame.nvim" }
 end)

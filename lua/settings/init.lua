@@ -1,6 +1,6 @@
 -- Global
 -- vim.opt.fillchars = { vert = ' ' }
-vim.g.mapleader=" "
+vim.g.mapleader = " "
 vim.opt.showtabline = 2
 vim.opt.scrolloff = 5
 vim.opt.mouse = 'a'
@@ -26,7 +26,7 @@ vim.opt.lazyredraw = true
 vim.opt.encoding = 'UTF-8'
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 vim.opt.clipboard = 'unnamedplus'
-vim.opt.listchars = { tab = ">>>", trail = "·", precedes = "←", extends = "→",eol = "↲", nbsp = "␣" }
+vim.opt.listchars = { tab = ">>>", trail = "·", precedes = "←", extends = "→", eol = "↲", nbsp = "␣" }
 vim.opt.laststatus = 3
 vim.opt.timeoutlen = 500
 -- Buffer
@@ -54,13 +54,15 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
     local last_pos = vim.fn.line("'\"")
     if last_pos > 0 and last_pos <= vim.fn.line("$") then
-      vim.api.nvim_win_set_cursor(0, {last_pos, 0})
+      vim.api.nvim_win_set_cursor(0, { last_pos, 0 })
     end
   end,
 })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-  callback =  function()
+  callback = function()
     vim.highlight.on_yank()
   end,
 })
+
+vim.opt.pumblend = 25 --transparency completion

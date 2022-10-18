@@ -7,5 +7,5 @@ end
 
 require("toggleterm").setup({
 	shell = shellLocal,
-	direction = "float",
+	--[[ direction = "float", ]]
 })
