@@ -1,3 +1,9 @@
+local shellLocal
+if vim.loop.os_uname().sysname == "Windows_NT" then
+	shellLocal = "pwsh -nologo" -- change the default shell
+else
+  shellLocal = "sh"
+end
 require'FTerm'.setup({
   -- dimensions  = {
   --   height = 0.8,
@@ -7,7 +13,7 @@ require'FTerm'.setup({
   -- },
   -- border = 'single' -- or 'double'
   border = { "┏", "━", "┓", "┃", "┛","━", "┗", "┃" },
-cmd = 'pwsh',
+cmd = shellLocal,
 })
 vim.cmd([[
 hi FloatBorder guifg=#f2594b guibg=#282828

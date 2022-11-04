@@ -98,6 +98,7 @@ function! CloseWindo()
   "let saved_winnr = winnr()
   "let saved_winnr = bufname()
   let saved_winnr = win_getid()
+  " let saved_winnr = History_cursor_window()
   "echom saved_winnr
   "call feedkeys("\<c-c>")
   "call feedkeys("\<c-c>")
@@ -112,7 +113,7 @@ function! CloseWindo()
   silent! :FloatermHide!<cr>
   silent! :nohlsearch<cr>
   silent! :DiffviewClose<cr>
-  silent! :ToggleTermToggleAll!<cr>
+  silent! <cmd>ToggleTermToggleAll!<cr>
   "silent! :CocCommand explorer --quit 
   
   "cache le terminal

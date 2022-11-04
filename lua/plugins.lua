@@ -65,8 +65,9 @@ return require("packer").startup(function(use)
   -- use({ "SmiteshP/nvim-gps", config = lua_path("nvim-gps") })
   use({
     "SmiteshP/nvim-navic",
-    requires = "neovim/nvim-lspconfig",
+    requires = "neovim/nvim-lspconfig", config = lua_path("nvim-navic")
   })
+--[[ use { 'fgheng/winbar.nvim', config = lua_path("winbar")} ]]
 
   -- Syntax
   --[[ use({ "chrisbra/csv.vim" }) ]]
@@ -81,6 +82,11 @@ return require("packer").startup(function(use)
 
   -- Status Line and Bufferline
   use({ "famiu/feline.nvim", config = lua_path("feline") })
+  --
+--[[ use { ]]
+--[[   'nvim-lualine/lualine.nvim', ]]
+--[[   requires = { 'kyazdani42/nvim-web-devicons', opt = true } ]]
+--[[ , config = lua_path("lualine") } ]]
   use({ "kazhala/close-buffers.nvim" })
   --[[ use({ "noib3/nvim-cokeline", config = lua_path("nvim-cokeline") }) ]]
 
@@ -164,7 +170,6 @@ return require("packer").startup(function(use)
   use({ "goolord/alpha-nvim", config = lua_path("alpha-nvim") })
   --[[ use({ "jeffkreeftmeijer/vim-numbertoggle" }) ]]
   --[[ use({ "lambdalisue/suda.vim" }) ]]
-  --[[ use({ "numtostr/FTerm.nvim", config = lua_path("fterm") }) ]]
   --[[ use({ "wfxr/minimap.vim", config = lua_path("minimap") }) ]]
   --[[ use({ "luukvbaal/stabilize.nvim", config = lua_path("stabilize") }) ]]
   --[[ use({ "beauwilliams/focus.nvim", config = lua_path("focus") }) ]]
@@ -295,6 +300,10 @@ return require("packer").startup(function(use)
       vim.g.mkdp_auto_start = 1
     end,
   })
+  --[[ use { ]]
+  --[[   "davidgranstrom/nvim-markdown-preview" ]]
+  --[[ } ]]
+  use{ 'ray-x/starry.nvim'}
   use({
     "ethanholz/nvim-lastplace",
     disable = disableVariable,
@@ -476,7 +485,7 @@ return require("packer").startup(function(use)
     end,
   })
   use({ "ckipp01/nvim-jenkinsfile-linter", disable = disableVariable, requires = { "nvim-lua/plenary.nvim" } })
-  use({ "rafi/awesome-vim-colorschemes", disable = disableVariable })
+  --[[ use({ "rafi/awesome-vim-colorschemes", disable = disableVariable }) ]]
   use({
     "Shatur/neovim-cmake",
     disable = disableVariable,
@@ -589,11 +598,12 @@ return require("packer").startup(function(use)
   --[[ use {'HustLion/q-quit'} ]]
   --[[ use {'akinsho/bufferline.nvim', tag = "v2.*" } ]]
   --[[ use {'yamatsum/nvim-cursorline',  config = lua_path("nvim-cursorline") } -- bug other plugin ]]
-  use({
-    "akinsho/toggleterm.nvim",
-    tag = "*",
-    config = lua_path("toggleterm"),
-  })
+   use({
+     "akinsho/toggleterm.nvim",
+     tag = "*",
+     config = lua_path("toggleterm"),
+   })
+  --[[ use({ "numtostr/FTerm.nvim", config = lua_path("fterm") }) ]]
   use({
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -615,18 +625,29 @@ return require("packer").startup(function(use)
   })
   use('tibabit/vim-templates')
   use({
-      "glepnir/lspsaga.nvim",
-      branch = "main",
-      config = function()
-          local saga = require("lspsaga")
-          saga.init_lsp_saga({
-              -- your configuration
-          })
-      end,
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = function()
+      local saga = require("lspsaga")
+      saga.init_lsp_saga({
+        -- your configuration
+      })
+    end,
   })
   use({ "crusj/bookmarks.nvim",
     branch = 'main',
     requires = { 'kyazdani42/nvim-web-devicons' }, config = lua_path("bookmarks")
   })
   use { "f-person/git-blame.nvim" }
+  use { "numtostr/BufOnly.nvim", cmd = "BufOnly" }
+use {
+  'sudormrfbin/cheatsheet.nvim',
+  requires = {
+    {'nvim-telescope/telescope.nvim'},
+    {'nvim-lua/popup.nvim'},
+    {'nvim-lua/plenary.nvim'},
+  }
+}
+use "folke/neodev.nvim"
+use ('tamago324/nlsp-settings.nvim')
 end)
