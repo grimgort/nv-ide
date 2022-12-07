@@ -330,6 +330,7 @@ local mappings = {
       "Git Diff",
     },
     g = { "<cmd>LazyGit<cr>", "LazyGit" },
+    --[[ g = { "<cmd>lua _lazygit_toggle()<cr>", "LazyGit" }, ]]
     m = { "<cmd>Neogit<cr>", "Neogit" },
   },
   l = {

@@ -85,15 +85,15 @@ cmp.setup({
       "s",
     }),
   },
-  formatting = {
-    format = lspkind.cmp_format({
-      mode = "symbol_text",
-      maxwidth = 50,
-      before = function(entry, vim_item)
-        return vim_item
-      end,
-    }),
-  },
+  --[[ formatting = { ]]
+  --[[   format = lspkind.cmp_format({ ]]
+  --[[     mode = "symbol_text", ]]
+  --[[     maxwidth = 50, ]]
+  --[[     before = function(entry, vim_item) ]]
+  --[[       return vim_item ]]
+  --[[     end, ]]
+  --[[   }), ]]
+  --[[ }, ]]
   sources = cmp.config.sources({
     --[[ { name = "vsnip" }, ]]
     { name = "luasnip" },
@@ -101,7 +101,7 @@ cmp.setup({
     { name = "nvim_lua" },
     { name = "path" },
     { name = "calc" },
-    { name = "treesitter" },
+    --[[ { name = "treesitter" }, ]]
     { name = "tags" },
     -- { name = 'rg' },-- create big lag on big fortran file
   }, {

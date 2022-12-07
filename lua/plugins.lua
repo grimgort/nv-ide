@@ -43,7 +43,7 @@ return require("packer").startup(function(use)
   use({ "hrsh7th/cmp-buffer" })
   use({ "hrsh7th/cmp-vsnip" })
   use({ "hrsh7th/vim-vsnip" })
-  use({ "L3MON4D3/LuaSnip" })
+  use({ "L3MON4D3/LuaSnip", tag = "*", config = lua_path("luasnip") })
   use({ "saadparwaiz1/cmp_luasnip" })
   use({ "hrsh7th/cmp-path" })
   use({ "hrsh7th/cmp-calc" })
@@ -67,7 +67,7 @@ return require("packer").startup(function(use)
     "SmiteshP/nvim-navic",
     requires = "neovim/nvim-lspconfig", config = lua_path("nvim-navic")
   })
---[[ use { 'fgheng/winbar.nvim', config = lua_path("winbar")} ]]
+  --[[ use { 'fgheng/winbar.nvim', config = lua_path("winbar")} ]]
 
   -- Syntax
   --[[ use({ "chrisbra/csv.vim" }) ]]
@@ -83,15 +83,15 @@ return require("packer").startup(function(use)
   -- Status Line and Bufferline
   use({ "famiu/feline.nvim", config = lua_path("feline") })
   --
---[[ use { ]]
---[[   'nvim-lualine/lualine.nvim', ]]
---[[   requires = { 'kyazdani42/nvim-web-devicons', opt = true } ]]
---[[ , config = lua_path("lualine") } ]]
+  --[[ use { ]]
+  --[[   'nvim-lualine/lualine.nvim', ]]
+  --[[   requires = { 'kyazdani42/nvim-web-devicons', opt = true } ]]
+  --[[ , config = lua_path("lualine") } ]]
   use({ "kazhala/close-buffers.nvim" })
   --[[ use({ "noib3/nvim-cokeline", config = lua_path("nvim-cokeline") }) ]]
 
   -- Telescope
-  use({ "nvim-lua/popup.nvim" })
+  --[[ use({ "nvim-lua/popup.nvim" }) ]]
   use({ "nvim-lua/plenary.nvim" })
   use({ "nvim-telescope/telescope.nvim", config = lua_path("telescope") })
   --[[ use({ "nvim-telescope/telescope-fzy-native.nvim" }) ]]
@@ -258,7 +258,7 @@ return require("packer").startup(function(use)
   use({
     "ray-x/lsp_signature.nvim",
     disable = disableVariable,
-    event = "BufRead",
+    --[[ event = "BufRead", ]]
     config = function()
       require("lsp_signature").setup()
     end,
@@ -303,7 +303,7 @@ return require("packer").startup(function(use)
   --[[ use { ]]
   --[[   "davidgranstrom/nvim-markdown-preview" ]]
   --[[ } ]]
-  use{ 'ray-x/starry.nvim'}
+  use { 'ray-x/starry.nvim' }
   use({
     "ethanholz/nvim-lastplace",
     disable = disableVariable,
@@ -393,13 +393,14 @@ return require("packer").startup(function(use)
 
   use({ "simnalamburt/vim-mundo", disable = disableVariable })
   use({ "vim-scripts/DoxygenToolkit.vim", disable = disableVariable })
-  use({
-    "kosayoda/nvim-lightbulb",
-    disable = disableVariable,
-    config = function()
-      vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
-    end,
-  })
+  -- use({
+  --  "kosayoda/nvim-lightbulb",
+  --  disable = disableVariable,
+  --  config = function()
+  --    vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
+  --  end,
+  -- })
+
   -- use({
   -- 	"uga-rosa/cmp-dictionary",
   -- 	disable = disableVariable,
@@ -413,8 +414,8 @@ return require("packer").startup(function(use)
     disable = disableVariable,
     config = function()
       -- vim.api.nvim_command 'let g:git_messenger_include_diff="current"'
-      vim.api.nvim_command("let g:git_messenger_floating_win_opts = { 'border': 'single' }")
-      vim.api.nvim_command("let g:git_messenger_no_default_mappings=v:true")
+      --[[ vim.api.nvim_command("let g:git_messenger_floating_win_opts = { 'border': 'single' }") ]]
+      --[[ vim.api.nvim_command("let g:git_messenger_no_default_mappings=v:true") ]]
       vim.api.nvim_command("let g:git_messenger_always_into_popup=v:true")
     end,
   })
@@ -572,7 +573,7 @@ return require("packer").startup(function(use)
   use({
     "vim-test/vim-test",
   })
-  use({ "brymer-meneses/grammar-guard.nvim" })
+  --[[ use({ "brymer-meneses/grammar-guard.nvim" }) ]]
   use({ "p00f/clangd_extensions.nvim" })
   use({
     "akinsho/git-conflict.nvim",
@@ -598,11 +599,11 @@ return require("packer").startup(function(use)
   --[[ use {'HustLion/q-quit'} ]]
   --[[ use {'akinsho/bufferline.nvim', tag = "v2.*" } ]]
   --[[ use {'yamatsum/nvim-cursorline',  config = lua_path("nvim-cursorline") } -- bug other plugin ]]
-   use({
-     "akinsho/toggleterm.nvim",
-     tag = "*",
-     config = lua_path("toggleterm"),
-   })
+  use({
+    "akinsho/toggleterm.nvim",
+    tag = "*",
+    config = lua_path("toggleterm"),
+  })
   --[[ use({ "numtostr/FTerm.nvim", config = lua_path("fterm") }) ]]
   use({
     "kylechui/nvim-surround",
@@ -634,20 +635,22 @@ return require("packer").startup(function(use)
       })
     end,
   })
-  use({ "crusj/bookmarks.nvim",
-    branch = 'main',
-    requires = { 'kyazdani42/nvim-web-devicons' }, config = lua_path("bookmarks")
-  })
-  use { "f-person/git-blame.nvim" }
   use { "numtostr/BufOnly.nvim", cmd = "BufOnly" }
-use {
-  'sudormrfbin/cheatsheet.nvim',
-  requires = {
-    {'nvim-telescope/telescope.nvim'},
-    {'nvim-lua/popup.nvim'},
-    {'nvim-lua/plenary.nvim'},
+  use {
+    'sudormrfbin/cheatsheet.nvim',
+    requires = {
+      { 'nvim-telescope/telescope.nvim' },
+      { 'nvim-lua/popup.nvim' },
+      { 'nvim-lua/plenary.nvim' },
+    }
   }
-}
-use "folke/neodev.nvim"
-use ('tamago324/nlsp-settings.nvim')
+  use "folke/neodev.nvim"
+  use{'tamago324/nlsp-settings.nvim', config = lua_path("nlsp_setting")}
+  --[[ use { ]]
+  --[[   'tanvirtin/vgit.nvim', ]]
+  --[[   requires = { ]]
+  --[[     'nvim-lua/plenary.nvim' ]]
+  --[[   }, config = lua_path("vgit") ]]
+  --[[]]
+  --[[ } ]]
 end)

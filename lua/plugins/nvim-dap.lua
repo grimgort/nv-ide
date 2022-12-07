@@ -109,9 +109,9 @@ dap.configurations.cpp = {
     name= "Windows Launch",
 			type= "cppdbg",
 			request= "launch",
-			program= "D:\\ftarroux\\Documents\\FRED\\BaseGit\\matisse_fred\\build\\bin\\Debug\\MATISSE.exe",
+			program= "${workspaceFolder}\\buid\\bin\\Debug\\MATISSE.exe",
 			stopAtEntry= true,
-			cwd= "D:\\ftarroux\\Documents\\FRED\\BaseGit\\matisse_fred\\build\\BaseDeTest\\aero_5_1\\",
+			cwd= "${workspaceFolder}\\build",
       args = {"D:\\ftarroux\\Documents\\FRED\\BaseGit\\matisse_fred\\BaseDeTest\\nua_6_9\\T350-NR-NA-6-9_1.scm","D:\\ftarroux\\Documents\\FRED\\BaseGit\\matisse_fred\\build\\matisse.cfg"}
   },
   {
