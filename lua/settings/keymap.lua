@@ -4,15 +4,27 @@
 -- vim.g.mapleader = "<space>"
 -- vim.keymap.set("n", "<F4>", ":set number! relativenumber!<CR>", { noremap = true, silent = false })
 -- vim.keymap.set("n", "<F5>", ":set list! list?<CR>", { noremap = false, silent = false })
---[[ vim.keymap.set("n", "ç", '<CMD>lua require("FTerm").toggle()<CR>', { noremap = true, silent = true }) ]]
---[[ vim.keymap.set("t", "ç", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', { noremap = true, silent = true }) ]]
+vim.keymap.set("n", "ç", '<CMD>lua require("FTerm").toggle()<CR>', { noremap = true, silent = true })
+vim.keymap.set("t", "ç", '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', { noremap = true, silent = true })
+
+--[[ local fterm = require("FTerm") ]]
+--[[]]
+--[[ local lazygit = fterm:new({ ]]
+--[[     ft = 'fterm_lazygit', ]]
+--[[     cmd = "lazygit" ]]
+--[[ }) ]]
+--[[]]
+--[[  -- Use this to toggle lazygit in a floating terminal ]]
+--[[ vim.keymap.set('n', '<leader>gh', function() ]]
+--[[     lazygit:toggle() ]]
+--[[ end) ]]
 --[[]]
 --[[ vim.keymap.set("n", "ç", '<CMD>ToggleTerm<CR>', { noremap = true, silent = true }) ]]
 --[[ vim.keymap.set("t", "ç", '<C-\\><C-n><CMD>ToggleTerm<CR>', { noremap = true, silent = true }) ]]
-vim.cmd([[
-nnoremap <silent>ç <Cmd>exe v:count1 . "ToggleTerm"<CR>
-tnoremap <silent>ç <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>
-]])
+--vim.cmd([[
+--nnoremap <silent>ç <Cmd>exe v:count1 . "ToggleTerm"<CR>
+--tnoremap <silent>ç <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>
+--]])
 
 vim.keymap.set("n", "<leader>ee", ":NvimTreeToggle<CR>", { noremap = false, silent = true })
 vim.keymap.set("n", "<leader>ef", ":NvimTreeFindFile<CR>", { noremap = false, silent = true })
@@ -206,9 +218,13 @@ vim.keymap.set("n", "<leader>zd", ":DevDocsUnderCursor<cr>", opt)
 
 vim.keymap.set("n", "<leader>zx", ":only<cr>", opt)
 vim.keymap.set("n", "<leader>za", ":tabnew<cr>", opt)
-vim.keymap.set("n", "²", ":CloseAll<cr>", opt)
-vim.keymap.set("i", "²", "<C-o>:CloseAll<cr>", opt)
-vim.keymap.set("t", "²", "<C-\\><C-n>CloseAll<cr>", opt)
+--[[ vim.keymap.set("n", "²", ":CloseAll<cr>", opt) ]]
+--[[ vim.keymap.set("i", "²", "<C-o>:CloseAll<cr>", opt) ]]
+--[[ vim.keymap.set("t", "²", "<C-\\><C-n>CloseAll<cr>", opt) ]]
+vim.keymap.set("n", "²", ":lua QuitAllLua()<cr>", opt)
+vim.keymap.set("i", "²", "<C-o>:lua QuitAllLua()<cr>", opt)
+vim.keymap.set("t", "²", "<C-\\><C-n>:lua QuitAllLua()<cr>", { noremap = true, silent = true })
+
 vim.keymap.set("t", "<C-a>", "<C-\\><C-n>", opt)
 vim.keymap.set("t", "<C-j>", [[<DOWN>]], opt)
 vim.keymap.set("t", "<C-k>", [[<UP>]], opt)
@@ -239,7 +255,8 @@ vim.keymap.set("n", "<leader>znb", ":AsyncRun cpplint % <cr>", opt)
 
 -- vim.keymap.set("n","<leader>zz",":TZFocus<cr>",opt)
 vim.keymap.set("n", "<leader>zz", ":only<cr>", opt)
-vim.keymap.set("n", "<leader>lm", ":SymbolsOutline<cr>", opt)
+--[[ vim.keymap.set("n", "<leader>lm", ":SymbolsOutline<cr>", opt) ]]
+vim.keymap.set("n", "<leader>lm", ":Lspsaga outline<cr>", opt)
 vim.keymap.set("n", "<C-:>", ":Telescope commands<cr>", opt)
 vim.keymap.set("n", "<C-;>", ":Telescope keymaps<cr>", opt)
 vim.keymap.set("n", "<C-!>", "<cmd>Telescope command_history<cr>", opt)
@@ -329,6 +346,7 @@ local mappings = {
       "<cmd>Gitsigns diffthis HEAD<cr>",
       "Git Diff",
     },
+    h = { "<cmd>Neogit<cr>", "Neogit" },
     g = { "<cmd>LazyGit<cr>", "LazyGit" },
     --[[ g = { "<cmd>lua _lazygit_toggle()<cr>", "LazyGit" }, ]]
     m = { "<cmd>Neogit<cr>", "Neogit" },
@@ -500,6 +518,7 @@ vim.keymap.set("n", "<leader>lz", "<Cmd>ClangdSwitchSourceHeader<CR>", opt)
 vim.keymap.set("c", "<S-k>", "<UP>", opt)
 vim.keymap.set("c", "<S-j>", "<DOWN>", opt)
 vim.keymap.set("n", "<leader>q", "<cmd>lua smart_quit()<cr>", opt)
+--[[ vim.keymap.set("n", "<leader>q", "<cmd>lua QuitAllLua()<cr>", opt) ]]
 
 
 vim.keymap.set('n', '<leader>co', '<Plug>(git-conflict-ours)')
@@ -553,7 +572,7 @@ vim.keymap.set("n", "]E", function()
 end, { silent = true })
 
 -- Outline
-vim.keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", { silent = true })
+--[[ vim.keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", { silent = true }) ]]
 
 -- Hover Doc
 vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
@@ -565,3 +584,33 @@ vim.keymap.set("n", "<A-d>", "<cmd>Lspsaga open_floaterm<CR>", { silent = true }
 vim.keymap.set("n", "<A-d>", "<cmd>Lspsaga open_floaterm lazygit<CR>", { silent = true })
 -- close floaterm
 vim.keymap.set("t", "<A-d>", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })
+
+
+vim.keymap.set('n', '<space>ts', require('telescope').extensions.toggletasks.spawn,
+    { desc = 'toggletasks: spawn' })
+
+
+vim.keymap.set("n", "<F2>", "<cmd>RandomColorScheme<CR>")
+
+
+local opts = {}
+vim.api.nvim_set_keymap("v", "<C-r>", "<CMD>SearchReplaceSingleBufferVisualSelection<CR>", opts)
+vim.api.nvim_set_keymap("v", "<C-s>", "<CMD>SearchReplaceWithinVisualSelection<CR>", opts)
+vim.api.nvim_set_keymap("v", "<C-b>", "<CMD>SearchReplaceWithinVisualSelectionCWord<CR>", opts)
+
+vim.api.nvim_set_keymap("n", "<leader>rs", "<CMD>SearchReplaceSingleBufferSelections<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>ro", "<CMD>SearchReplaceSingleBufferOpen<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>rw", "<CMD>SearchReplaceSingleBufferCWord<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>rW", "<CMD>SearchReplaceSingleBufferCWORD<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>re", "<CMD>SearchReplaceSingleBufferCExpr<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>rf", "<CMD>SearchReplaceSingleBufferCFile<CR>", opts)
+
+vim.api.nvim_set_keymap("n", "<leader>rbs", "<CMD>SearchReplaceMultiBufferSelections<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>rbo", "<CMD>SearchReplaceMultiBufferOpen<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>rbw", "<CMD>SearchReplaceMultiBufferCWord<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>rbW", "<CMD>SearchReplaceMultiBufferCWORD<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>rbe", "<CMD>SearchReplaceMultiBufferCExpr<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>rbf", "<CMD>SearchReplaceMultiBufferCFile<CR>", opts)
+
+-- show the effects of a search / replace in a live preview window
+vim.o.inccommand = "split"

@@ -95,7 +95,6 @@ dap.adapters.cppdbg = {
   }
 }
 
-local dap = require('dap')
 dap.configurations.cpp = {
   {
     --[[ name = "Launch file", ]]
@@ -109,7 +108,7 @@ dap.configurations.cpp = {
     name= "Windows Launch",
 			type= "cppdbg",
 			request= "launch",
-			program= "${workspaceFolder}\\buid\\bin\\Debug\\MATISSE.exe",
+			program= "${workspaceFolder}\\build\\bin\\Debug\\MATISSE.exe",
 			stopAtEntry= true,
 			cwd= "${workspaceFolder}\\build",
       args = {"D:\\ftarroux\\Documents\\FRED\\BaseGit\\matisse_fred\\BaseDeTest\\nua_6_9\\T350-NR-NA-6-9_1.scm","D:\\ftarroux\\Documents\\FRED\\BaseGit\\matisse_fred\\build\\matisse.cfg"}

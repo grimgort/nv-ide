@@ -41,8 +41,8 @@ return require("packer").startup(function(use)
   use({ "hrsh7th/cmp-nvim-lsp" })
   use({ "hrsh7th/cmp-nvim-lua" })
   use({ "hrsh7th/cmp-buffer" })
-  use({ "hrsh7th/cmp-vsnip" })
-  use({ "hrsh7th/vim-vsnip" })
+  --[[ use({ "hrsh7th/cmp-vsnip" }) ]]
+  --[[ use({ "hrsh7th/vim-vsnip" }) ]]
   use({ "L3MON4D3/LuaSnip", tag = "*", config = lua_path("luasnip") })
   use({ "saadparwaiz1/cmp_luasnip" })
   use({ "hrsh7th/cmp-path" })
@@ -60,6 +60,7 @@ return require("packer").startup(function(use)
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = lua_path("treesitter") })
   use({ "p00f/nvim-ts-rainbow", config = lua_path("nvim-ts-rainbow") })
   use({ "lukas-reineke/indent-blankline.nvim", config = lua_path("indent-blankline") })
+  use({"Darazaki/indent-o-matic"})
   use({ "JoosepAlviste/nvim-ts-context-commentstring" })
   use({ "lewis6991/nvim-treesitter-context" })
   -- use({ "SmiteshP/nvim-gps", config = lua_path("nvim-gps") })
@@ -118,7 +119,7 @@ return require("packer").startup(function(use)
 
   -- Move & Search & replace
   use({ "nacro90/numb.nvim", config = lua_path("numb") })
-  use({ "dyng/ctrlsf.vim", config = lua_path("ctrlsf") })
+  --[[ use({ "dyng/ctrlsf.vim", config = lua_path("ctrlsf") }) ]]
   --[[ use({ "kevinhwang91/nvim-hlslens", config = lua_path("hlslens") }) ]]
   -- use { 'ggandor/lightspeed.nvim', config = lua_path"lightspeed" }
   -- use { 'karb94/neoscroll.nvim', config = lua_path"neoscroll" }
@@ -127,24 +128,14 @@ return require("packer").startup(function(use)
   --[[ use({ "fedepujol/move.nvim" }) ]]
 
   -- Tim Pope docet
-  --[[ use({ "tpope/vim-rails" }) ]]
-  --[[ use({ "tpope/vim-abolish" }) ]]
-  --[[ use({ "tpope/vim-sleuth" }) ]]
-  --[[ use({ "tpope/vim-bundler" }) ]]
-  --[[ use({ "tpope/vim-capslock" }) ]]
-  --[[ use({ "tpope/vim-repeat" }) ]]
-  --[[ use({ "tpope/vim-endwise" }) ]]
-  --[[ use({ "tpope/vim-dispatch" }) ]]
-  --[[ use({ "tpope/vim-dadbod" }) ]]
-  --[[ use({ "tpope/vim-jdaddy" }) ]]
-  use({ "tpope/vim-fugitive" })
+    use({ "tpope/vim-fugitive" })
 
   -- Folke
   use({ "folke/trouble.nvim" })
   use({ "folke/todo-comments.nvim", config = lua_path("todo-comments") })
   use({
     "folke/which-key.nvim",
-    commit = "7d260629f7a7e9de6f80b31aa347e2c930925540",
+    --[[ commit = "7d260629f7a7e9de6f80b31aa347e2c930925540", ]]
     config = lua_path("which-key"),
   })
 
@@ -257,18 +248,14 @@ return require("packer").startup(function(use)
 
   use({
     "ray-x/lsp_signature.nvim",
-    disable = disableVariable,
-    --[[ event = "BufRead", ]]
-    config = function()
-      require("lsp_signature").setup()
-    end,
-  })
-  use({
-    "simrat39/symbols-outline.nvim",
-    tag = "*",
-    disable = disableVariable,
-    cmd = "SymbolsOutline",
-  })
+    disable = disableVariable, config =lua_path("lsp_signature")
+      })
+  --[[ use({ ]]
+  --[[   "simrat39/symbols-outline.nvim", ]]
+  --[[   tag = "*", ]]
+  --[[   disable = disableVariable, ]]
+  --[[   cmd = "SymbolsOutline", ]]
+  --[[ }) ]]
   use({
     "npxbr/glow.nvim",
     disable = disableVariable,
@@ -390,7 +377,16 @@ return require("packer").startup(function(use)
   use({ "skywind3000/asyncrun.vim", tag = "*", disable = disableVariable })
 
   use({ "skywind3000/asynctasks.vim", disable = disableVariable })
-
+  use {
+    'jedrzejboczar/toggletasks.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'akinsho/toggleterm.nvim',
+      --[[ 'nvim-telescope/telescope.nvim/', ]]
+    },
+    -- To enable YAML config support
+    --[[ rocks = 'lyaml', ]]
+  }
   use({ "simnalamburt/vim-mundo", disable = disableVariable })
   use({ "vim-scripts/DoxygenToolkit.vim", disable = disableVariable })
   -- use({
@@ -427,7 +423,7 @@ return require("packer").startup(function(use)
     disable = disableVariable,
     config = function()
       vim.cmd([[let g:devdocs_filetype_map = {
-    \   'c': 'cpp'}
+    \   'c': 'c'}
     ]] )
     end,
   })
@@ -589,7 +585,7 @@ return require("packer").startup(function(use)
       })
     end,
   })
-  use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
+  use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim", config = lua_path("neogit") })
   use({
     "akinsho/bufferline.nvim",
     tag = "v2.*",
@@ -599,12 +595,12 @@ return require("packer").startup(function(use)
   --[[ use {'HustLion/q-quit'} ]]
   --[[ use {'akinsho/bufferline.nvim', tag = "v2.*" } ]]
   --[[ use {'yamatsum/nvim-cursorline',  config = lua_path("nvim-cursorline") } -- bug other plugin ]]
-  use({
-    "akinsho/toggleterm.nvim",
-    tag = "*",
-    config = lua_path("toggleterm"),
-  })
-  --[[ use({ "numtostr/FTerm.nvim", config = lua_path("fterm") }) ]]
+  --[[ use({ ]]
+  --[[   "akinsho/toggleterm.nvim", ]]
+  --[[   tag = "*", ]]
+  --[[   config = lua_path("toggleterm"), ]]
+  --[[ }) ]]
+  use({ "numtostr/FTerm.nvim", config = lua_path("fterm") })
   use({
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -625,16 +621,13 @@ return require("packer").startup(function(use)
     end,
   })
   use('tibabit/vim-templates')
-  use({
+use({
     "glepnir/lspsaga.nvim",
     branch = "main",
     config = function()
-      local saga = require("lspsaga")
-      saga.init_lsp_saga({
-        -- your configuration
-      })
+        require('lspsaga').setup({})
     end,
-  })
+})
   use { "numtostr/BufOnly.nvim", cmd = "BufOnly" }
   use {
     'sudormrfbin/cheatsheet.nvim',
@@ -645,7 +638,31 @@ return require("packer").startup(function(use)
     }
   }
   use "folke/neodev.nvim"
-  use{'tamago324/nlsp-settings.nvim', config = lua_path("nlsp_setting")}
+  use { 'tamago324/nlsp-settings.nvim', config = lua_path("nlsp_setting") }
+  use { 'Civitasv/cmake-tools.nvim', config = lua_path("cmaketool") }
+  use({
+    "dnlhc/glance.nvim",
+    config = function()
+      require('glance').setup({
+        -- your configuration
+      })
+    end,
+  })
+  use {"rktjmp/lush.nvim"}
+use {
+    "mcchrish/zenbones.nvim",
+    -- Optionally install Lush. Allows for more configuration or extending the colorscheme
+    -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
+    -- In Vim, compat mode is turned on as Lush only works in Neovim.
+    requires = "rktjmp/lush.nvim"
+}
+use({
+  "roobert/search-replace.nvim", config = lua_path("search-replace") })
+
+use{'joechrisellis/lsp-format-modifications.nvim', config = lua_path("lsp-format-modification") }
+--[[ use { ]]
+--[[     'ldelossa/nvim-ide', config = lua_path("nvim-ide") ]]
+--[[ } ]]
   --[[ use { ]]
   --[[   'tanvirtin/vgit.nvim', ]]
   --[[   requires = { ]]

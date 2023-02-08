@@ -164,4 +164,20 @@ function smart_quit()
   end
 end
 
---[[ return M ]]
+function QuitAllLua()
+  vim.cmd([[call feedkeys("\<esc>")]])
+  vim.cmd([[call feedkeys("q")]])
+  vim.cmd([[call feedkeys("\<esc>")]])
+  vim.cmd("pclose")
+  vim.cmd("helpclose")
+  vim.cmd("ccl")
+  vim.cmd("NvimTreeClose")
+  vim.cmd("DiffviewClose")
+  vim.cmd("nohlsearch")
+  --[[ vim.cmd("Lspsaga close_floaterm") ]]
+require('FTerm').close()
+--[[ :pclose ]]
+--[[   helpclose ]]
+--[[   ccl ]]
+
+end

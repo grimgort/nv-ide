@@ -1,0 +1,9 @@
+{
+  "ltex":{
+"get_language_id": ["fr"],
+"langage": "fr",
+"filetype":"md",
+"enabled": false
+
+  }
+}

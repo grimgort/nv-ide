@@ -134,3 +134,13 @@ cmd = {"groovy-language-server.cmd"}
 require'lspconfig'.jedi_language_server.setup{
 cmd = {"jedi-language-server.cmd"}
 }
+
+--[[ require("lspconfig").lsp_format_modifications.setup{ ]]
+--[[ on_attach = function(client, bufnr) ]]
+--[[   -- your usual configuration — options, keymaps, etc ]]
+--[[   -- ... ]]
+--[[]]
+--[[   local lsp_format_modifications = require"lsp-format-modifications" ]]
+--[[   lsp_format_modifications.attach(client, bufnr, { format_on_save = true}) ]]
+--[[ end ]]
+--[[ } ]]

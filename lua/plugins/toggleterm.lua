@@ -8,6 +8,8 @@ end
 require("toggleterm").setup({
 	shell = shellLocal,
 	--[[ direction = "float", ]]
+  hide_numbers = false, -- hide the number column in toggleterm buffers
+
 })
 
 
