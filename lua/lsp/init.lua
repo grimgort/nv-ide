@@ -102,7 +102,13 @@ require("lspconfig").ltex.setup({
 	capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
   cmd = {"ltex-ls.cmd"}
 })
-require'lspconfig'.sumneko_lua.setup {
+require("lspconfig").marksman.setup({
+
+	filetypes = { "markdown" },
+	capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  --[[ cmd = {"-ls.cmd"} ]]
+})
+require'lspconfig'.lua_ls.setup {
   settings = {
     Lua = {
       runtime = {

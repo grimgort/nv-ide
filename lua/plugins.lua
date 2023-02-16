@@ -58,7 +58,7 @@ return require("packer").startup(function(use)
 
   -- Treesitter
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = lua_path("treesitter") })
-  use({ "p00f/nvim-ts-rainbow", config = lua_path("nvim-ts-rainbow") })
+  use({ "mrjones2014/nvim-ts-rainbow", config = lua_path("nvim-ts-rainbow") })
   use({ "lukas-reineke/indent-blankline.nvim", config = lua_path("indent-blankline") })
   use({"Darazaki/indent-o-matic"})
   use({ "JoosepAlviste/nvim-ts-context-commentstring" })
@@ -250,12 +250,13 @@ return require("packer").startup(function(use)
     "ray-x/lsp_signature.nvim",
     disable = disableVariable, config =lua_path("lsp_signature")
       })
-  --[[ use({ ]]
-  --[[   "simrat39/symbols-outline.nvim", ]]
-  --[[   tag = "*", ]]
-  --[[   disable = disableVariable, ]]
-  --[[   cmd = "SymbolsOutline", ]]
-  --[[ }) ]]
+  use({
+    "simrat39/symbols-outline.nvim",
+    tag = "*",
+    disable = disableVariable,
+    cmd = "SymbolsOutline",
+    config = lua_path("symbols-outline")
+  })
   use({
     "npxbr/glow.nvim",
     disable = disableVariable,
@@ -340,7 +341,7 @@ return require("packer").startup(function(use)
   --        require("surround").setup { mappings_style = "sandwich", prefix = "e" }
   --     end,
   --  },
-  use({ "stevearc/aerial.nvim", disable = disableVariable })
+  use({ "stevearc/aerial.nvim", disable = disableVariable,config = lua_path("aerial") })
   use({
     "voldikss/vim-translator",
     disable = disableVariable,
@@ -397,14 +398,15 @@ return require("packer").startup(function(use)
   --  end,
   -- })
 
-  -- use({
-  -- 	"uga-rosa/cmp-dictionary",
-  -- 	disable = disableVariable,
-  -- })
-  -- use({
-  -- 	"f3fora/cmp-spell",
-  -- 	disable = disableVariable,
-  -- })
+   use({
+   	"uga-rosa/cmp-dictionary",
+   	disable = disableVariable,
+    config = lua_path("cmp-dictionary")
+   })
+   use({
+   	"f3fora/cmp-spell",
+   	disable = disableVariable,
+   })
   use({
     "rhysd/git-messenger.vim",
     disable = disableVariable,
