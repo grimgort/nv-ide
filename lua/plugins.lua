@@ -398,15 +398,15 @@ return require("packer").startup(function(use)
   --  end,
   -- })
 
-   use({
-   	"uga-rosa/cmp-dictionary",
-   	disable = disableVariable,
-    config = lua_path("cmp-dictionary")
-   })
-   use({
-   	"f3fora/cmp-spell",
-   	disable = disableVariable,
-   })
+   --[[ use({ ]]
+   --[[ 	"uga-rosa/cmp-dictionary", ]]
+   --[[ 	disable = disableVariable, ]]
+   --[[  config = lua_path("cmp-dictionary") ]]
+   --[[ }) ]]
+   --[[ use({ ]]
+   --[[ 	"f3fora/cmp-spell", ]]
+   --[[ 	disable = disableVariable, ]]
+   --[[ }) ]]
   use({
     "rhysd/git-messenger.vim",
     disable = disableVariable,
@@ -672,4 +672,7 @@ use{'joechrisellis/lsp-format-modifications.nvim', config = lua_path("lsp-format
   --[[   }, config = lua_path("vgit") ]]
   --[[]]
   --[[ } ]]
+use{"b0o/schemastore.nvim", config = lua_path("schemastore")}
+
+
 end)
