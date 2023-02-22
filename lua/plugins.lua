@@ -623,12 +623,18 @@ return require("packer").startup(function(use)
     end,
   })
   use('tibabit/vim-templates')
+
 use({
     "glepnir/lspsaga.nvim",
     branch = "main",
     config = function()
-        require('lspsaga').setup({})
+        require("lspsaga").setup({})
     end,
+    requires = {
+        {"nvim-tree/nvim-web-devicons"},
+        --Please make sure you install markdown and markdown_inline parser
+        {"nvim-treesitter/nvim-treesitter"}
+    }
 })
   use { "numtostr/BufOnly.nvim", cmd = "BufOnly" }
   use {
