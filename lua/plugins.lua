@@ -673,6 +673,13 @@ use{'joechrisellis/lsp-format-modifications.nvim', config = lua_path("lsp-format
   --[[]]
   --[[ } ]]
 use{"b0o/schemastore.nvim", config = lua_path("schemastore")}
-
+use {
+  "nvim-neotest/neotest",
+  requires = {
+    "nvim-lua/plenary.nvim",
+    "nvim-treesitter/nvim-treesitter",
+  }, config = lua_path("neotest")
+}
+use {"nvim-neotest/neotest-vim-test", config = lua_path("neotest-vim-test")}
 
 end)
