@@ -60,7 +60,7 @@ return require("packer").startup(function(use)
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", config = lua_path("treesitter") })
   use({ "mrjones2014/nvim-ts-rainbow", config = lua_path("nvim-ts-rainbow") })
   use({ "lukas-reineke/indent-blankline.nvim", config = lua_path("indent-blankline") })
-  use({"Darazaki/indent-o-matic"})
+  use({ "Darazaki/indent-o-matic" })
   use({ "JoosepAlviste/nvim-ts-context-commentstring" })
   use({ "lewis6991/nvim-treesitter-context" })
   -- use({ "SmiteshP/nvim-gps", config = lua_path("nvim-gps") })
@@ -128,7 +128,7 @@ return require("packer").startup(function(use)
   --[[ use({ "fedepujol/move.nvim" }) ]]
 
   -- Tim Pope docet
-    use({ "tpope/vim-fugitive" })
+  use({ "tpope/vim-fugitive" })
 
   -- Folke
   use({ "folke/trouble.nvim" })
@@ -153,7 +153,7 @@ return require("packer").startup(function(use)
   use({ "mfussenegger/nvim-dap", config = lua_path("nvim-dap") })
   use({ "rcarriga/nvim-dap-ui", config = lua_path("nvim-dap-ui") })
   use({ "theHamsta/nvim-dap-virtual-text", config = lua_path("nvim-dap-virtual-text") })
-
+ use{"jay-babu/mason-nvim-dap.nvim", config = lua_path("mason-nvim-dap")}
   -- General Plugins
   --[[ use({ "machakann/vim-sandwich", config = lua_path("sandwich") }) ]]
   use({ "rcarriga/nvim-notify", config = lua_path("nvim-notify") })
@@ -171,10 +171,8 @@ return require("packer").startup(function(use)
   use({
     "windwp/nvim-spectre",
     disable = disableVariable,
-    event = "BufRead",
-    config = function()
-      require("spectre").setup()
-    end,
+    event = "BufRead"
+    , config = lua_path("nvim-spectre")
   })
   use({
     "andymass/vim-matchup",
@@ -248,8 +246,8 @@ return require("packer").startup(function(use)
 
   use({
     "ray-x/lsp_signature.nvim",
-    disable = disableVariable, config =lua_path("lsp_signature")
-      })
+    disable = disableVariable, config = lua_path("lsp_signature")
+  })
   use({
     "simrat39/symbols-outline.nvim",
     tag = "*",
@@ -341,7 +339,7 @@ return require("packer").startup(function(use)
   --        require("surround").setup { mappings_style = "sandwich", prefix = "e" }
   --     end,
   --  },
-  use({ "stevearc/aerial.nvim", disable = disableVariable,config = lua_path("aerial") })
+  use({ "stevearc/aerial.nvim", disable = disableVariable, config = lua_path("aerial") })
   use({
     "voldikss/vim-translator",
     disable = disableVariable,
@@ -398,15 +396,15 @@ return require("packer").startup(function(use)
   --  end,
   -- })
 
-   --[[ use({ ]]
-   --[[ 	"uga-rosa/cmp-dictionary", ]]
-   --[[ 	disable = disableVariable, ]]
-   --[[  config = lua_path("cmp-dictionary") ]]
-   --[[ }) ]]
-   --[[ use({ ]]
-   --[[ 	"f3fora/cmp-spell", ]]
-   --[[ 	disable = disableVariable, ]]
-   --[[ }) ]]
+  --[[ use({ ]]
+  --[[ 	"uga-rosa/cmp-dictionary", ]]
+  --[[ 	disable = disableVariable, ]]
+  --[[  config = lua_path("cmp-dictionary") ]]
+  --[[ }) ]]
+  --[[ use({ ]]
+  --[[ 	"f3fora/cmp-spell", ]]
+  --[[ 	disable = disableVariable, ]]
+  --[[ }) ]]
   use({
     "rhysd/git-messenger.vim",
     disable = disableVariable,
@@ -624,18 +622,18 @@ return require("packer").startup(function(use)
   })
   use('tibabit/vim-templates')
 
-use({
+  use({
     "glepnir/lspsaga.nvim",
     branch = "main",
     config = function()
-        require("lspsaga").setup({})
+      require("lspsaga").setup({})
     end,
     requires = {
-        {"nvim-tree/nvim-web-devicons"},
-        --Please make sure you install markdown and markdown_inline parser
-        {"nvim-treesitter/nvim-treesitter"}
+      { "nvim-tree/nvim-web-devicons" },
+      --Please make sure you install markdown and markdown_inline parser
+      { "nvim-treesitter/nvim-treesitter" }
     }
-})
+  })
   use { "numtostr/BufOnly.nvim", cmd = "BufOnly" }
   use {
     'sudormrfbin/cheatsheet.nvim',
@@ -656,21 +654,22 @@ use({
       })
     end,
   })
-  use {"rktjmp/lush.nvim"}
-use {
+  use { "rktjmp/lush.nvim" }
+  use {
     "mcchrish/zenbones.nvim",
     -- Optionally install Lush. Allows for more configuration or extending the colorscheme
     -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
     -- In Vim, compat mode is turned on as Lush only works in Neovim.
     requires = "rktjmp/lush.nvim"
-}
-use({
-  "roobert/search-replace.nvim", config = lua_path("search-replace") })
+  }
+  use({
+    "roobert/search-replace.nvim", config = lua_path("search-replace")
+  })
 
-use{'joechrisellis/lsp-format-modifications.nvim', config = lua_path("lsp-format-modification") }
---[[ use { ]]
---[[     'ldelossa/nvim-ide', config = lua_path("nvim-ide") ]]
---[[ } ]]
+  use { 'joechrisellis/lsp-format-modifications.nvim', config = lua_path("lsp-format-modification") }
+  --[[ use { ]]
+  --[[     'ldelossa/nvim-ide', config = lua_path("nvim-ide") ]]
+  --[[ } ]]
   --[[ use { ]]
   --[[   'tanvirtin/vgit.nvim', ]]
   --[[   requires = { ]]
@@ -678,14 +677,14 @@ use{'joechrisellis/lsp-format-modifications.nvim', config = lua_path("lsp-format
   --[[   }, config = lua_path("vgit") ]]
   --[[]]
   --[[ } ]]
-use{"b0o/schemastore.nvim", config = lua_path("schemastore")}
-use {
-  "nvim-neotest/neotest",
-  requires = {
-    "nvim-lua/plenary.nvim",
-    "nvim-treesitter/nvim-treesitter",
-  }, config = lua_path("neotest")
-}
-use {"nvim-neotest/neotest-vim-test", config = lua_path("neotest-vim-test")}
+  use { "b0o/schemastore.nvim", config = lua_path("schemastore") }
+  use {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    }, config = lua_path("neotest")
+  }
+  use { "nvim-neotest/neotest-vim-test", config = lua_path("neotest-vim-test") }
 
 end)

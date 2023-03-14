@@ -1,6 +1,6 @@
-local dap, dapui = require("dap")
+local dap = require("dap")
 
-vim.fn.sign_define('DapBreakpoint', {text='', texthl='error', linehl='', numhl=''})
+vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'error', linehl = '', numhl = '' })
 -- ADAPTERS
 dap.adapters.node2 = {
   type = 'executable',
@@ -27,13 +27,13 @@ dap.configurations.javascript = {
     request = 'attach',
     restart = true,
     -- port = 9229
-    processId = require'dap.utils'.pick_process,
+    processId = require 'dap.utils'.pick_process,
   },
 }
 dap.adapters.ruby = {
   type = 'executable';
   command = 'bundle';
-  args = {'exec', 'readapt', 'stdio'};
+  args = { 'exec', 'readapt', 'stdio' };
 }
 
 dap.configurations.ruby = {
@@ -42,7 +42,7 @@ dap.configurations.ruby = {
     request = 'launch';
     name = 'Rails';
     program = 'bundle';
-    programArgs = {'exec', 'rails', 's'};
+    programArgs = { 'exec', 'rails', 's' };
     useBundler = true;
   },
 }
@@ -82,49 +82,85 @@ dap.configurations.ruby = {
 --[[   }, ]]
 --[[ } ]]
 
-local dap = require('dap')
 dap.adapters.cppdbg = {
   id = 'cppdbg',
   type = 'executable',
   --[[ command = 'C:\\absolute\\path\\to\\cpptools\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe', ]]
   --[[ command = 'D:\\ftarroux\\AppData\\Local\\nvim-data\\mason\\bin\\OpenDebugAD7.cmd', ]]
-  command = 'D:\\ftarroux\\AppData\\Local\\nvim-data\\mason\\packages\\cpptools\\extension\\debugAdapters\\bin\\OpenDebugAD7.exe',
+  command = 'D:\\ftarroux\\AppData\\Local\\nvim-data\\mason\\bin\\OpenDebugAD7.cmd',
 
   options = {
     detached = false
   }
 }
-
-dap.configurations.cpp = {
-  {
-    --[[ name = "Launch file", ]]
-    --[[ type = "cppdbg", ]]
-    --[[ request = "launch", ]]
-    --[[ program = function() ]]
-    --[[   return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file') ]]
-    --[[ end, ]]
-    --[[ cwd = '${workspaceFolder}', ]]
-    --[[ stopAtEntry = true, ]]
-    name= "Windows Launch",
-			type= "cppdbg",
-			request= "launch",
-			program= "${workspaceFolder}\\build\\bin\\Debug\\MATISSE.exe",
-			stopAtEntry= true,
-			cwd= "${workspaceFolder}\\build",
-      args = {"D:\\ftarroux\\Documents\\FRED\\BaseGit\\matisse_fred\\BaseDeTest\\nua_6_9\\T350-NR-NA-6-9_1.scm","D:\\ftarroux\\Documents\\FRED\\BaseGit\\matisse_fred\\build\\matisse.cfg"}
-  },
-  {
-    name = 'Attach to gdbserver :1234',
-    type = 'cppdbg',
-    request = 'launch',
-    MIMode = 'gdb',
-    miDebuggerServerAddress = 'localhost:1234',
-    miDebuggerPath = '/usr/bin/gdb',
-    cwd = '${workspaceFolder}',
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-  },
+dap.adapters.codelldb = {
+  type = 'server',
+  port = "${port}",
+  executable = {
+    -- CHANGE THIS to your path!
+    command = 'D:\\ftarroux\\AppData\\Local\\nvim-data\\mason\\bin\\codelldb.cmd',
+    args = { "--port", "${port}" },
+    -- On windows you may have to uncomment this:
+    detached = false,
+  }
 }
+dap.configurations.cpp = {
+  --[[ { ]]
+  --[[ name = "Launch file", ]]
+  --[[ type = "cppdbg", ]]
+  --[[ request = "launch", ]]
+  --[[ program = function() ]]
+  --[[   return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file') ]]
+  --[[ end, ]]
+  --[[ cwd = '${workspaceFolder}', ]]
+  --[[ stopAtEntry = true, ]]
+  --[[   name= "Windows Launch", ]]
+  --[[ 	type= "cppdbg", ]]
+  --[[ 	request= "launch", ]]
+  --[[ 	program= "${workspaceFolder}\\build\\bin\\Debug\\MATISSE.exe", ]]
+  --[[ 	stopAtEntry= true, ]]
+  --[[ 	cwd= "${workspaceFolder}\\build", ]]
+  --[[     args = {"D:\\ftarroux\\Documents\\FRED\\BaseGit\\matisse_fred\\BaseDeTest\\nua_6_9\\T350-NR-NA-6-9_1.scm","D:\\ftarroux\\Documents\\FRED\\BaseGit\\matisse_fred\\build\\matisse.cfg"} ]]
+  --[[ }, ]]
+  --[[ { ]]
+  --[[   name = 'Attach to gdbserver :1234', ]]
+  --[[   type = 'cppdbg', ]]
+  --[[   request = 'launch', ]]
+  --[[   MIMode = 'gdb', ]]
+  --[[   miDebuggerServerAddress = 'localhost:1234', ]]
+  --[[   miDebuggerPath = '/usr/bin/gdb', ]]
+  --[[   cwd = '${workspaceFolder}', ]]
+  --[[   program = function() ]]
+  --[[     return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file') ]]
+  --[[   end, ]]
+  --[[ }, ]]
+  {
+    name = "Launch matisse",
+    type = "codelldb",
+    request = "launch",
+
+    program = "${workspaceFolder}\\build\\bin\\Debug\\MATISSE.exe",
+    cwd = "${workspaceFolder}\\build",
+    args = { function()
+      return vim.fn.input('argument: ', vim.fn.getcwd() .. '\\', 'file')
+    end, "${workspaceFolder}\\build\\matisse.cfg" },
+    stopOnEntry = false,
+  },
+  {
+    name = "Launch other",
+    type = "codelldb",
+    request = "launch",
+    cwd = "${workspaceFolder}\\build",
+    args = { function()
+      return vim.fn.input('argument: ', vim.fn.getcwd() .. '\\', 'file')
+    end, "${workspaceFolder}\\build\\matisse.cfg" },
+    stopOnEntry = false,
+    program = function()
+      return vim.fn.input('executable: ', vim.fn.getcwd() .. '\\', 'file')
+    end,
+  }
+}
+
+
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp

@@ -176,6 +176,8 @@ vim.keymap.set("n", "<leader>dso", "<cmd>lua require'dap'.step_out()<CR>", { sil
 vim.keymap.set("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { silent = true, noremap = true })
 vim.keymap.set("n", "<leader>dui", ":lua require('dapui').toggle()<cr>", { silent = true, noremap = true })
 vim.keymap.set("n", "<leader>dro", "<cmd>lua require'dap'.repl.open()<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>dj", "<cmd>lua require('dap.ext.vscode').load_launchjs(nil, { codelldb= { 'c', 'cpp' } })<CR>", { silent = true, noremap = true })
+
 -- vim.keymap.set(
 -- 	"n",
 -- 	"<leader>dcc",
@@ -255,8 +257,8 @@ vim.keymap.set("n", "<leader>znb", ":AsyncRun cpplint % <cr>", opt)
 
 -- vim.keymap.set("n","<leader>zz",":TZFocus<cr>",opt)
 vim.keymap.set("n", "<leader>zz", ":only<cr>", opt)
---[[ vim.keymap.set("n", "<leader>lm", ":SymbolsOutline<cr>", opt) ]]
-vim.keymap.set("n", "<leader>lm", ":Lspsaga outline<cr>", opt)
+vim.keymap.set("n", "<leader>lm", ":SymbolsOutline<cr>", opt)
+--[[ vim.keymap.set("n", "<leader>lm", ":Lspsaga outline<cr>", opt) ]]
 vim.keymap.set("n", "<C-:>", ":Telescope commands<cr>", opt)
 vim.keymap.set("n", "<C-;>", ":Telescope keymaps<cr>", opt)
 vim.keymap.set("n", "<C-!>", "<cmd>Telescope command_history<cr>", opt)

@@ -1,5 +1,5 @@
 require("mason-lspconfig").setup({
-  ensure_installed = { "jsonls", "yamlls", "vimls", "clangd", "fortls", "cmake" }
+  --[[ ensure_installed = { "jsonls", "yamlls", "vimls", "clangd", "fortls", "cmake" } ]]
 })
 
 --[[ require'lspconfig'.cmake.setup{} ]]
