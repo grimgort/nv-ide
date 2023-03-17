@@ -174,7 +174,7 @@ function QuitAllLua()
   vim.cmd("NvimTreeClose")
   vim.cmd("DiffviewClose")
   vim.cmd("nohlsearch")
-  vim.cmd("SymbolsOutlineClose")
+  --[[ vim.cmd("SymbolsOutlineClose") ]]
   --[[ vim.cmd("Lspsaga close_floaterm") ]]
 require('FTerm').close()
 --[[ :pclose ]]

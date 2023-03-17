@@ -27,6 +27,11 @@ return require("packer").startup(function(use)
   use({ "wbthomason/packer.nvim" })
 
   -- LSP
+  --
+  use { "folke/neodev.nvim", config = lua_path("neodev") }
+  -- use({
+  --  "folke/neoconf.nvim", config = lua_path("neoconf")
+  -- })
   use({ "williamboman/mason.nvim", config = lua_path("mason") })
   use({ "williamboman/mason-lspconfig.nvim", config = lua_path("mason-lspconfig") })
   use({ "jose-elias-alvarez/null-ls.nvim", config = lua_path("null_ls") })
@@ -153,7 +158,7 @@ return require("packer").startup(function(use)
   use({ "mfussenegger/nvim-dap", config = lua_path("nvim-dap") })
   use({ "rcarriga/nvim-dap-ui", config = lua_path("nvim-dap-ui") })
   use({ "theHamsta/nvim-dap-virtual-text", config = lua_path("nvim-dap-virtual-text") })
- use{"jay-babu/mason-nvim-dap.nvim", config = lua_path("mason-nvim-dap")}
+  use { "jay-babu/mason-nvim-dap.nvim", config = lua_path("mason-nvim-dap") }
   -- General Plugins
   --[[ use({ "machakann/vim-sandwich", config = lua_path("sandwich") }) ]]
   use({ "rcarriga/nvim-notify", config = lua_path("nvim-notify") })
@@ -573,15 +578,15 @@ return require("packer").startup(function(use)
   use({ "p00f/clangd_extensions.nvim" })
   use({
     "akinsho/git-conflict.nvim",
-    tag = "*",
+    --[[ tag = "*", ]]
     config = function()
       require("git-conflict").setup({
         default_mappings = true, -- disable buffer local mapping created by this plugin
         disable_diagnostics = false, -- This will disable the diagnostics in a buffer whilst it is conflicted
-        highlights = { -- They must have background color, otherwise the default color will be used
-          incoming = "DiffText",
-          current = "DiffAdd",
-        },
+        --[[ highlights = { -- They must have background color, otherwise the default color will be used ]]
+        --[[   incoming = "DiffText", ]]
+        --[[   current = "DiffAdd", ]]
+        --[[ }, ]]
       })
     end,
   })
@@ -643,7 +648,6 @@ return require("packer").startup(function(use)
       { 'nvim-lua/plenary.nvim' },
     }
   }
-  use "folke/neodev.nvim"
   use { 'tamago324/nlsp-settings.nvim', config = lua_path("nlsp_setting") }
   use { 'Civitasv/cmake-tools.nvim', config = lua_path("cmaketool") }
   use({

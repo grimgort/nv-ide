@@ -177,6 +177,9 @@ vim.keymap.set("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>
 vim.keymap.set("n", "<leader>dui", ":lua require('dapui').toggle()<cr>", { silent = true, noremap = true })
 vim.keymap.set("n", "<leader>dro", "<cmd>lua require'dap'.repl.open()<CR>", { silent = true, noremap = true })
 vim.keymap.set("n", "<leader>dj", "<cmd>lua require('dap.ext.vscode').load_launchjs(nil, { codelldb= { 'c', 'cpp' } })<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>df", "<cmd>lua require('dapui').float_element()<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>de", "<cmd>lua require('dapui').eval()<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>duu", "<cmd>lua require('dapui').update_render()<CR>", { silent = true, noremap = true })
 
 -- vim.keymap.set(
 -- 	"n",
@@ -224,7 +227,7 @@ vim.keymap.set("n", "<leader>za", ":tabnew<cr>", opt)
 --[[ vim.keymap.set("i", "²", "<C-o>:CloseAll<cr>", opt) ]]
 --[[ vim.keymap.set("t", "²", "<C-\\><C-n>CloseAll<cr>", opt) ]]
 vim.keymap.set("n", "²", ":lua QuitAllLua()<cr>", opt)
-vim.keymap.set("i", "²", "<C-o>:lua QuitAllLua()<cr>", opt)
+vim.keymap.set("i", "²", "<C-o>:lua QuitAllLua()<cr>", {silent = true})
 vim.keymap.set("t", "²", "<C-\\><C-n>:lua QuitAllLua()<cr>", { noremap = true, silent = true })
 
 vim.keymap.set("t", "<C-a>", "<C-\\><C-n>", opt)
@@ -529,6 +532,15 @@ vim.keymap.set('n', '<leader>cb', '<Plug>(git-conflict-both)')
 vim.keymap.set('n', '<leader>c0', '<Plug>(git-conflict-none)')
 vim.keymap.set('n', '<leader>ck', '<Plug>(git-conflict-prev-conflict)')
 vim.keymap.set('n', '<leader>cj', '<Plug>(git-conflict-next-conflict)')
+
+vim.api.nvim_set_keymap("n", "<leader>ch", "<CMD>diffg RE<CR>", opt)
+vim.api.nvim_set_keymap("n", "<leader>cb", "<CMD>diffg LO<CR>", opt)
+vim.api.nvim_set_keymap("n", "<leader>cl", "<CMD>diffg BA<CR>", opt)
+
+vim.api.nvim_set_keymap("n", "<leader>cs", "<CMD>Gdiffsplit<CR>", opt)
+
+
+
 vim.keymap.set('n', '<leader>vv', '<cmd>windo diffthis<cr>')
 vim.keymap.set('n', '<leader>vf', '<cmd>bufdo diffoff<cr>')
 vim.keymap.set("n", "<leader>sz", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
